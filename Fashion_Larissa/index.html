@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Larissa – Boutique</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 🟣 Bandeau haut */
+        header {
+            background: linear-gradient(90deg, #ff7cb8, #ff4fa9);
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* 🌸 Menu */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffe3f1;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            margin: 10px;
+            text-decoration: none;
+            color: #d3006c;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        /* ✨ Fond étoiles or */
+        @keyframes stars {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        .gold-stars {
+            background-image: url('https://i.imgur.com/0H1Wz0G.png');
+            background-size: 500px;
+            animation: stars 30s linear infinite;
+            padding: 30px 0;
+        }
+
+        /* 🌸 HERO */
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff0f7;
+        }
+
+        .hero-tag {
+            font-size: 15px;
+            color: #d3006c;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            margin-top: 12px;
+            background: #d3006c;
+            padding: 12px 24px;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .hero img {
+            width: 210px;
+            margin-top: 25px;
+        }
+
+        /* ⭐ Présentation Larissa */
+        .larissa-section {
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px 20px;
+        }
+
+        .larissa-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 25px;
+            max-width: 380px;
+            text-align: center;
+            border: 3px solid #ffb6d9;
+            box-shadow: 0 0 18px rgba(255, 192, 203, 0.6),
+                        0 0 12px rgba(255, 215, 0, 0.5);
+        }
+
+        .larissa-photo {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ff7cb8;
+            box-shadow: 0 0 18px gold;
+            margin-bottom: 15px;
+        }
+
+        .larissa-name {
+            color: #d3006c;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .larissa-text {
+            color: #5a0040;
+            font-size: 15px;
+            margin-top: 8px;
+            line-height: 1.45;
+        }
+
+        /* 📸 Galerie */
+        .section-title {
+            text-align: center;
+            margin-top: 40px;
+            color: #d3006c;
+            font-size: 24px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.08);
+        }
+
+        /* 🔍 ZOOM */
+        .zoom-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .zoom-container img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* 📌 Footer */
+        footer {
+            text-align: center;
+            background: #ff7cb8;
+            color: white;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        /* 💬 Bouton WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 50%;
+            font-size: 26px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-decoration: none;
+            z-index: 2000;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>Fashion Larissa</header>
+
+<nav>
+    <a href="#sacs">Sacs</a>
+    <a href="#sandales">Sandales</a>
+    <a href="#vetements">Vêtements</a>
+    <a href="#pagne">Pagne</a>
+    <a href="#soins">Soins</a>
+</nav>
+
+<div class="gold-stars">
+<section class="hero">
+    <span class="hero-tag">Sélection élégante – Mode & Accessoires</span><br>
+
+    <a class="hero-cta"
+       href="https://wa.me/22966018713?text=Bonjour%20Larissa%2C%20je%20souhaite%20plus%20d'informations."
+       target="_blank">💬 Contact WhatsApp</a>
+
+    <br><br>
+    <img src="Logo_Boutique.png" alt="Logo">
+</section>
+
+<!-- ⭐⭐⭐ SECTION LARISSA ⭐⭐⭐ -->
+<section class="larissa-section">
+    <div class="larissa-card">
+        <img src="Images_Boutique/Larissa/Larissa.jpeg" class="larissa-photo">
+        <h3 class="larissa-name">Larissa – Conseillère Mode</h3>
+        <p class="larissa-text">Toujours prête à vous accompagner dans vos choix élégants : sacs, sandales, pagnes, vêtements et soins. 🌸</p>
+    </div>
+</section>
+</div>
+
+<!-- GALLERIES… -->
+<section id="sacs"><h2 class="section-title">Sacs</h2>
+<div class="gallery">
+    <img src="Images_Boutique/Sacs/Sac_1.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_2.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_3.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_4.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_5.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_6.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_7.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_8.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_9.jpeg">
+    <img src="Images_Boutique/Sacs/Sac_10.jpeg">
+</div>
+</section>
+
+<section id="sandales"><h2 class="section-title">Sandales</h2>
+<div class="gallery">
+    <img src="Images_Boutique/Sandales/Sandale_1.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_2.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_3.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_4.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_5.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_6.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_7.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_8.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_9.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_10.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_11.jpeg">
+    <img src="Images_Boutique/Sandales/Sandale_12.jpeg">
+</div>
+</section>
+
+<section id="vetements"><h2 class="section-title">Vêtements</h2>
+<div class="gallery">
+    <img src="Images_Boutique/Vetement/Vetement_1.jpeg">
+    <img src="Images_Boutique/Vetement/Vetement_2.jpeg">
+    <img src="Images_Boutique/Vetement/Vetement_3.jpeg">
+</div>
+</section>
+
+<section id="pagne"><h2 class="section-title">Pagne</h2>
+<div class="gallery">
+    <img src="Images_Boutique/Pagne/Pagne_1.jpeg">
+</div>
+</section>
+
+<section id="soins"><h2 class="section-title">Soins</h2>
+<div class="gallery">
+    <img src="Images_Boutique/Soins/Soins_1.jpeg">
+    <img src="Images_Boutique/Soins/Soins_2.jpeg">
+    <img src="Images_Boutique/Soins/Soins_3.jpeg">
+</div>
+</section>
+
+<footer>
+    © Fashion Larissa – Présentation visuelle. Contact direct via WhatsApp.
+</footer>
+
+<!-- 🔍 ZOOM VIEWER -->
+<div class="zoom-container" id="zoomBox">
+    <span class="close-btn" onclick="closeZoom()">✖</span>
+    <img id="zoomImage">
+</div>
+
+<script>
+    document.querySelectorAll('.gallery img').forEach(img => {
+        img.addEventListener('click', function() {
+            document.getElementById('zoomImage').src = this.src;
+            document.getElementById('zoomBox').style.display = 'flex';
+        });
+    });
+
+    function closeZoom() {
+        document.getElementById('zoomBox').style.display = 'none';
+    }
+</script>
+
+<a class="whatsapp-float"
+   href="https://wa.me/22966018713?text=Bonjour%20Larissa"
+   target="_blank">💬</a>
+
+</body>
+</html>
