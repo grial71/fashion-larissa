@@ -1,14 +1,224 @@
-<section id="sacs"><h2 id="title-sacs" class="section-title">Sacs</h2>
-<div class="gallery">
-    <img src="Images_Boutique/Sacs/Sac_1.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_2.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_3.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_4.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_5.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_6.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_7.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_8.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_9.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_10.jpeg">
-</div>
-</section>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Larissa – Boutique</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* 🟣 Bandeau haut */
+        header {
+            background: linear-gradient(90deg, #ff7cb8, #ff4fa9);
+            color: white;
+            padding: 18px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* 🌸 MENU */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffe3f1;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            margin: 10px;
+            text-decoration: none;
+            color: #d3006c;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        /* 🌍 Boutons de langue */
+        .lang-switch {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .lang-switch button {
+            padding: 8px 15px;
+            margin: 5px;
+            background: #d3006c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* ✨ Fond étoiles or */
+        @keyframes stars {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        .gold-stars {
+            background-image: url('Images_Boutique/etoiles_or.png');
+            background-size: 500px;
+            animation: stars 30s linear infinite;
+            padding: 30px 0;
+        }
+
+        /* 🌸 HERO */
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff0f7;
+        }
+
+        .hero-tag {
+            color: #d3006c;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            margin-top: 12px;
+            background: #d3006c;
+            padding: 12px 24px;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* ⭐ Section Larissa */
+        .larissa-section {
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px 20px;
+        }
+
+        .larissa-card {
+            background: #fff;
+            text-align: center;
+            padding: 25px;
+            border-radius: 18px;
+            border: 3px solid #ffb6d9;
+            box-shadow: 0 0 20px pink;
+            max-width: 380px;
+        }
+
+        .larissa-photo {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ff7cb8;
+            box-shadow: 0 0 20px gold;
+            margin-bottom: 15px;
+        }
+
+        /* 📸 GALERIE */
+        .section-title {
+            text-align: center;
+            color: #d3006c;
+            font-size: 24px;
+            margin-top: 40px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            margin: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.12);
+        }
+
+        /* 🔍 ZOOM */
+        .zoom-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .zoom-container img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* 💬 WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            padding: 14px 18px;
+            border-radius: 50%;
+            color: white;
+            font-size: 26px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px black;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #ff7cb8;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header id="title">Fashion Larissa</header>
+
+<nav>
+    <a id="menu-sacs" href="#sacs">Sacs</a>
+    <a id="menu-sandales" href="#sandales">Sandales</a>
+    <a id="menu-vetements" href="#vetements">Vêtements</a>
+    <a id="menu-pagne" href="#pagne">Pagne</a>
+    <a id="menu-soins" href="#soins">Soins</a>
+</nav>
+
+<!-- 🔵 Boutons langue -->
+<div class="lang-switch">
+    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+    <button onclick="setLanguage('en')">🇬🇧 E
