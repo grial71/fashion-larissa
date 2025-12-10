@@ -159,13 +159,23 @@
             padding: 20px;
         }
 
-        .gallery img {
-            width: 100%;
-            border-radius: 8px;
-            object-fit: cover;
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
+       /* 🖼️ Miniatures pour garder des tailles moyennes */
+.gallery img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.25s;
+    cursor: pointer;
+    margin: auto;
+    display: block;
+}
+
+/* Lorsqu'on survole, légère augmentation */
+.gallery img:hover {
+    transform: scale(1.12);
+}
+
 
         .gallery img:hover {
             transform: scale(1.08);
@@ -373,3 +383,4 @@
 
 </body>
 </html>
+
