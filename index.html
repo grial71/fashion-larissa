@@ -44,7 +44,24 @@
             font-size: 17px;
         }
 
-        /* ✨ Fond étoiles or */
+        /* 🔵 Boutons de langue */
+        .lang-switch {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .lang-switch button {
+            margin: 5px;
+            padding: 8px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #d3006c;
+            color: white;
+            font-weight: bold;
+        }
+
         @keyframes stars {
             from { background-position: 0 0; }
             to { background-position: 1000px 1000px; }
@@ -183,16 +200,7 @@
             cursor: pointer;
         }
 
-        /* 📌 Footer */
-        footer {
-            text-align: center;
-            background: #ff7cb8;
-            color: white;
-            padding: 15px;
-            margin-top: 40px;
-        }
-
-        /* 💬 Bouton WhatsApp flottant */
+        /* 💬 WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -211,21 +219,28 @@
 
 <body>
 
-<header>Fashion Larissa</header>
+<header id="title">Fashion Larissa</header>
 
 <nav>
-    <a href="#sacs">Sacs</a>
-    <a href="#sandales">Sandales</a>
-    <a href="#vetements">Vêtements</a>
-    <a href="#pagne">Pagne</a>
-    <a href="#soins">Soins</a>
+    <a id="menu-sacs" href="#sacs">Sacs</a>
+    <a id="menu-sandales" href="#sandales">Sandales</a>
+    <a id="menu-vetements" href="#vetements">Vêtements</a>
+    <a id="menu-pagne" href="#pagne">Pagne</a>
+    <a id="menu-soins" href="#soins">Soins</a>
 </nav>
 
-<div class="gold-stars">
-<section class="hero">
-    <span class="hero-tag">Sélection élégante – Mode & Accessoires</span><br>
+<!-- 🔵 BOUTONS LANGUE -->
+<div class="lang-switch">
+    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+    <button onclick="setLanguage('en')">🇬🇧 English</button>
+</div>
 
-    <a class="hero-cta"
+<div class="gold-stars">
+
+<section class="hero">
+    <span id="hero-tag" class="hero-tag">Sélection élégante – Mode & Accessoires</span><br>
+
+    <a id="hero-cta" class="hero-cta"
        href="https://wa.me/22966018713?text=Bonjour%20Larissa%2C%20je%20souhaite%20plus%20d'informations."
        target="_blank">💬 Contact WhatsApp</a>
 
@@ -237,68 +252,49 @@
 <section class="larissa-section">
     <div class="larissa-card">
         <img src="Images_Boutique/Larissa/Larissa.jpeg" class="larissa-photo">
-        <h3 class="larissa-name">Larissa – Conseillère Mode</h3>
-        <p class="larissa-text">Toujours prête à vous accompagner dans vos choix élégants : sacs, sandales, pagnes, vêtements et soins. 🌸</p>
+        <h3 id="larissa-title" class="larissa-name">Larissa – Conseillère Mode</h3>
+        <p id="larissa-text" class="larissa-text">
+            Toujours prête à vous accompagner dans vos choix élégants :
+            sacs, sandales, pagnes, vêtements et soins. 🌸
+        </p>
     </div>
 </section>
 </div>
 
-<!-- GALLERIES… -->
-<section id="sacs"><h2 class="section-title">Sacs</h2>
+<!-- 🧼 GALERIES -->
+<section id="sacs"><h2 id="title-sacs" class="section-title">Sacs</h2>
 <div class="gallery">
     <img src="Images_Boutique/Sacs/Sac_1.jpeg">
     <img src="Images_Boutique/Sacs/Sac_2.jpeg">
     <img src="Images_Boutique/Sacs/Sac_3.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_4.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_5.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_6.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_7.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_8.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_9.jpeg">
-    <img src="Images_Boutique/Sacs/Sac_10.jpeg">
 </div>
 </section>
 
-<section id="sandales"><h2 class="section-title">Sandales</h2>
+<section id="sandales"><h2 id="title-sandales" class="section-title">Sandales</h2>
 <div class="gallery">
     <img src="Images_Boutique/Sandales/Sandale_1.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_2.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_3.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_4.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_5.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_6.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_7.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_8.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_9.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_10.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_11.jpeg">
-    <img src="Images_Boutique/Sandales/Sandale_12.jpeg">
 </div>
 </section>
 
-<section id="vetements"><h2 class="section-title">Vêtements</h2>
+<section id="vetements"><h2 id="title-vetements" class="section-title">Vêtements</h2>
 <div class="gallery">
     <img src="Images_Boutique/Vetement/Vetement_1.jpeg">
-    <img src="Images_Boutique/Vetement/Vetement_2.jpeg">
-    <img src="Images_Boutique/Vetement/Vetement_3.jpeg">
 </div>
 </section>
 
-<section id="pagne"><h2 class="section-title">Pagne</h2>
+<section id="pagne"><h2 id="title-pagne" class="section-title">Pagne</h2>
 <div class="gallery">
     <img src="Images_Boutique/Pagne/Pagne_1.jpeg">
 </div>
 </section>
 
-<section id="soins"><h2 class="section-title">Soins</h2>
+<section id="soins"><h2 id="title-soins" class="section-title">Soins</h2>
 <div class="gallery">
     <img src="Images_Boutique/Soins/Soins_1.jpeg">
-    <img src="Images_Boutique/Soins/Soins_2.jpeg">
-    <img src="Images_Boutique/Soins/Soins_3.jpeg">
 </div>
 </section>
 
-<footer>
+<footer id="footer">
     © Fashion Larissa – Présentation visuelle. Contact direct via WhatsApp.
 </footer>
 
@@ -309,6 +305,7 @@
 </div>
 
 <script>
+    /* 🔍 ZOOM */
     document.querySelectorAll('.gallery img').forEach(img => {
         img.addEventListener('click', function() {
             document.getElementById('zoomImage').src = this.src;
@@ -319,6 +316,55 @@
     function closeZoom() {
         document.getElementById('zoomBox').style.display = 'none';
     }
+
+    /* 🌍 TRADUCTION */
+    const translations = {
+        fr: {
+            title: "Fashion Larissa",
+            "menu-sacs": "Sacs",
+            "menu-sandales": "Sandales",
+            "menu-vetements": "Vêtements",
+            "menu-pagne": "Pagne",
+            "menu-soins": "Soins",
+            "hero-tag": "Sélection élégante – Mode & Accessoires",
+            "hero-cta": "💬 Contact WhatsApp",
+            "larissa-title": "Larissa – Conseillère Mode",
+            "larissa-text": "Toujours prête à vous accompagner dans vos choix élégants : sacs, sandales, pagnes, vêtements et soins. 🌸",
+            "title-sacs": "Sacs",
+            "title-sandales": "Sandales",
+            "title-vetements": "Vêtements",
+            "title-pagne": "Pagne",
+            "title-soins": "Soins",
+            footer: "© Fashion Larissa – Présentation visuelle. Contact direct via WhatsApp."
+        },
+
+        en: {
+            title: "Fashion Larissa",
+            "menu-sacs": "Bags",
+            "menu-sandales": "Sandals",
+            "menu-vetements": "Clothing",
+            "menu-pagne": "Fabric",
+            "menu-soins": "Care",
+            "hero-tag": "Elegant selection – Fashion & Accessories",
+            "hero-cta": "💬 WhatsApp Contact",
+            "larissa-title": "Larissa – Fashion Advisor",
+            "larissa-text": "Always ready to help you choose elegant items: bags, sandals, fabrics, clothing and beauty care. 🌸",
+            "title-sacs": "Bags",
+            "title-sandales": "Sandals",
+            "title-vetements": "Clothing",
+            "title-pagne": "Fabric",
+            "title-soins": "Care",
+            footer: "© Fashion Larissa – Visual presentation. Direct WhatsApp contact."
+        }
+    };
+
+    function setLanguage(lang) {
+        const t = translations[lang];
+        for (const id in t) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = t[id];
+        }
+    }
 </script>
 
 <a class="whatsapp-float"
@@ -327,4 +373,3 @@
 
 </body>
 </html>
-
