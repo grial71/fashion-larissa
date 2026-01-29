@@ -2,375 +2,844 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Larissa – Boutique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="Michel">
+    <meta name="description" content="Fashion Larissa : Mode et accessoires sélectionnés avec passion à Cotonou.">
+    
+    <title>Fashion Larissa | Style & Ambiance Bénin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        body {
+        /* =====================================================================
+           1. SYSTÈME DE DESIGN GLOBAL
+           =====================================================================
+        */
+        :root {
+            --p-light: #ffe3f1;
+            --p-main: #ff7cb8;
+            --p-dark: #d3006c;
+            --gold-primary: #d4af37;
+            --gold-soft: #f1d592;
+            --white: #ffffff;
+            --black-lux: #12000a;
+            --grey-base: #f4f4f4;
+            --glass-header: rgba(255, 255, 255, 0.97);
+            --shadow-subtile: 0 15px 35px rgba(0,0,0,0.06);
+            --shadow-strong: 0 25px 60px rgba(211, 0, 108, 0.18);
+            --curve: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* =====================================================================
+           2. LOADER DE PRÉ-CHARGEMENT
+           =====================================================================
+        */
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loader-logo {
+            width: 160px;
+            animation: pulseLogo 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseLogo {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* =====================================================================
+           3. RESET ET TYPOGRAPHIE
+           =====================================================================
+        */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #fff;
-            color: #333;
-            overflow-x: hidden;
+            padding: 0;
+            outline: none;
         }
 
-        header {
-            background: linear-gradient(90deg, #ff7cb8, #ff4fa9);
-            color: white;
-            padding: 18px;
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: #ffe3f1;
-            padding: 12px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        nav a {
-            margin: 10px;
-            text-decoration: none;
-            color: #d3006c;
-            font-weight: bold;
-            font-size: 17px;
-        }
-
-        .lang-switch {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .lang-switch button {
-            padding: 8px 15px;
-            margin: 5px;
-            background: #d3006c;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        @keyframes stars {
-            from { background-position: 0 0; }
-            to { background-position: 1500px 1500px; }
-        }
-
-        .gold-stars {
-            background-image: url('Images_Boutique/etoiles_or.png');
-            background-size: 500px;
-            animation: stars 40s linear infinite;
-            padding: 30px 0;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 30px 20px;
-            background: #fff0f7;
-        }
-
-        .hero-tag {
-            color: #d3006c;
+        html {
+            scroll-behavior: smooth;
             font-size: 16px;
         }
 
-        .hero-cta {
-            display: inline-block;
-            margin-top: 12px;
-            background: #d3006c;
-            padding: 12px 24px;
-            color: white;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 18px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fffafc;
+            color: var(--black-lux);
+            overflow-x: hidden;
+            line-height: 1.9;
+            background-image: 
+                linear-gradient(rgba(255, 250, 252, 0.97), rgba(255, 250, 252, 0.97)),
+                url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+            background-attachment: fixed;
         }
 
-        .larissa-section {
+        /* =====================================================================
+           4. BARRE DE SERVICES (TOPBAR)
+           =====================================================================
+        */
+        .top-info-bar {
+            background: var(--black-lux);
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid var(--gold-primary);
+            text-transform: uppercase;
+        }
+
+        /* =====================================================================
+           5. HEADER VISUEL
+           =====================================================================
+        */
+        header {
+            height: 60vh;
+            background: linear-gradient(145deg, var(--p-main), var(--p-dark));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+
+        .header-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 12vw, 6.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            text-shadow: 5px 5px 25px rgba(0,0,0,0.3);
+            z-index: 5;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-weight: 300;
+            z-index: 5;
+        }
+
+        /* =====================================================================
+           6. NAVIGATION FIXE (STICKY)
+           =====================================================================
+        */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 6000;
+            background: var(--glass-header);
+            backdrop-filter: blur(20px);
+            padding: 25px 0;
             display: flex;
             justify-content: center;
-            padding: 40px 20px 20px;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 1px solid var(--p-light);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--p-dark);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--p-light);
+            transform: translateY(-3px);
+        }
+
+        /* =====================================================================
+           7. PRÉSENTATION LOGO
+           =====================================================================
+        */
+        .brand-section {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .logo-box {
+            margin-bottom: 40px;
+        }
+
+        .logo-box img {
+            width: 380px;
+            max-width: 90%;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+            animation: floatLogo 6s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* =====================================================================
+           8. PORTRAIT DE LARISSA
+           =====================================================================
+        */
+        .larissa-profile-block {
+            display: flex;
+            justify-content: center;
+            padding: 60px 5% 100px;
         }
 
         .larissa-card {
-            background: #fff;
+            background: var(--white);
+            border-radius: 60px;
+            padding: 80px 50px;
+            max-width: 800px;
+            width: 100%;
             text-align: center;
-            padding: 25px;
-            border-radius: 18px;
-            border: 3px solid #ffb6d9;
-            box-shadow: 0 0 20px pink;
-            max-width: 380px;
+            box-shadow: var(--shadow-strong);
+            border: 1px solid var(--p-light);
         }
 
-        .larissa-photo {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
+        .larissa-photo-wrapper {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 40px;
             border-radius: 50%;
-            border: 4px solid #ff7cb8;
-            box-shadow: 0 0 20px gold;
-            margin-bottom: 15px;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--p-main));
         }
 
-        .section-title {
-            text-align: center;
-            color: #d3006c;
-            font-size: 24px;
-            margin-top: 40px;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-
-        .gallery img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-            margin: auto;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.12);
-        }
-
-        .zoom-container {
-            position: fixed;
-            top: 0; 
-            left: 0;
-            width: 100%; 
+        .larissa-photo-wrapper img {
+            width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+        }
+
+        .larissa-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--p-dark);
+        }
+
+        .larissa-title {
+            color: var(--gold-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        .larissa-bio {
+            font-size: 1.15rem;
+            color: #555;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* =====================================================================
+           9. LECTEUR AUDIO AFRO (AMÉLIORÉ)
+           =====================================================================
+        */
+        .music-player {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            background: var(--white);
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: flex;
             align-items: center;
-            z-index: 3000;
+            gap: 15px;
+            z-index: 10000;
+            box-shadow: var(--shadow-strong);
+            border: 1px solid var(--p-light);
+            cursor: pointer;
+            transition: all 0.4s var(--curve);
         }
 
-        .zoom-container img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
+        .music-player:hover { 
+            transform: scale(1.05) translateY(-5px);
+            background: var(--p-light);
         }
 
-        .close-btn {
+        .music-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--p-dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(211, 0, 108, 0.3);
+        }
+
+        .music-text {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--p-dark);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .music-playing .music-icon {
+            animation: rotateMusic 4s linear infinite;
+        }
+
+        @keyframes rotateMusic {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* =====================================================================
+           10. GRILLE DES PRODUITS
+           =====================================================================
+        */
+        .section-separator {
+            text-align: center;
+            padding: 120px 20px 60px;
+        }
+
+        .section-separator h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--p-dark);
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 50px;
+            padding: 0 8%;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .art-card {
+            background: var(--white);
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: var(--shadow-subtile);
+            transition: 0.5s var(--curve);
+            cursor: pointer;
+            border: 1px solid #fff2f8;
+        }
+
+        .art-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .art-img-holder {
+            width: 100%;
+            height: 450px;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .art-img-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s;
+        }
+
+        .art-card:hover .art-img-holder img {
+            transform: scale(1.1);
+        }
+
+        .art-overlay {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 8px 12px;
-            border-radius: 6px;
+            inset: 0;
+            background: rgba(211, 0, 108, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.4s;
+            border-radius: 30px;
+        }
+
+        .art-card:hover .art-overlay {
+            opacity: 1;
+        }
+
+        .art-overlay span {
+            color: white;
+            font-weight: 700;
+            border: 2px solid white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        /* =====================================================================
+           11. SECTION FAQ - TRANSPARENCE ET RÉALITÉ
+           =====================================================================
+        */
+        .faq-section {
+            padding: 100px 10%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--p-light);
+        }
+
+        .faq-question {
+            padding: 25px 0;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            color: var(--p-dark);
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            font-size: 1rem;
+            color: #666;
+            padding-bottom: 20px;
+        }
+
+        /* =====================================================================
+           12. MODALE DE VISIONNAGE
+           =====================================================================
+        */
+        .viewer-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 0, 5, 0.98);
+            z-index: 15000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            padding: 30px;
+        }
+
+        .viewer-box {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .viewer-box img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 20px;
+            border: 5px solid white;
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            color: white;
+            font-size: 4rem;
             cursor: pointer;
         }
 
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            padding: 14px 18px;
-            border-radius: 50%;
+        /* =====================================================================
+           13. FOOTER SIGNÉ MICHEL
+           =====================================================================
+        */
+        footer {
+            background: var(--black-lux);
             color: white;
-            font-size: 26px;
-            text-decoration: none;
-            box-shadow: 0 4px 12px black;
+            padding: 150px 8% 60px;
+            margin-top: 200px;
+            position: relative;
         }
 
-        footer {
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 8px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--p-main), var(--gold-primary));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 30px;
+        }
+
+        .michel-credit {
+            margin-top: 100px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
             text-align: center;
-            padding: 20px;
-            background: #ff7cb8;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* =====================================================================
+           14. BOUTONS SOCIAUX FLOTTANTS
+           =====================================================================
+        */
+        .btn-float {
+            position: fixed;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: 0.5s;
+            font-size: 2.5rem;
             color: white;
+            text-decoration: none;
+        }
+
+        .wa-btn { bottom: 40px; background: #25D366; }
+        .tk-btn { bottom: 140px; background: #000; border: 2px solid white; }
+
+        .btn-float:hover { transform: scale(1.1) rotate(10deg); }
+
+        /* =====================================================================
+           15. MEDIA QUERIES
+           =====================================================================
+        */
+        @media (max-width: 768px) {
+            nav { gap: 10px; flex-wrap: wrap; }
+            nav a { font-size: 0.7rem; padding: 8px; }
+            .larissa-card { padding: 40px 20px; }
+            .btn-float { width: 65px; height: 65px; right: 20px; font-size: 2rem; }
+            .tk-btn { bottom: 100px; }
+            .music-player { left: 20px; bottom: 180px; padding: 10px 15px; }
         }
     </style>
 </head>
 
 <body>
 
-<header id="title">Fashion Larissa</header>
-
-<nav>
-    <a id="menu-sacs" href="#sacs">Sacs</a>
-    <a id="menu-sandales" href="#sandales">Sandales</a>
-    <a id="menu-vetements" href="#vetements">Vêtements</a>
-    <a id="menu-pagne" href="#pagne">Pagne</a>
-    <a id="menu-soins" href="#soins">Soins</a>
-</nav>
-
-<div class="lang-switch">
-    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
-    <button onclick="setLanguage('en')">🇬🇧 English</button>
-</div>
-
-<div class="gold-stars">
-
-<section class="hero">
-    <span id="hero-tag" class="hero-tag">Sélection élégante – Mode & Accessoires</span><br>
-
-    <a id="hero-cta" class="hero-cta"
-       href="https://wa.me/22966018713?text=Bonjour%20Larissa%2C%20je%20souhaite%20plus%20d'informations."
-       target="_blank">💬 Contact WhatsApp</a>
-
-    <br><br>
-    <img src="Logo_Boutique.png" width="180" alt="Logo Fashion Larissa">
-</section>
-
-<section class="larissa-section">
-    <div class="larissa-card">
-        <img src="Images_Boutique/Larissa/Larissa.jpeg" class="larissa-photo" alt="Larissa">
-        <h3 id="larissa-title">Larissa – Conseillère Mode</h3>
-        <p id="larissa-text">
-            Toujours prête à vous accompagner dans vos choix élégants :
-            sacs, sandales, pagnes, vêtements et soins. 🌸
-        </p>
+    <div id="loader">
+        <img src="./Logo_Boutique.png" class="loader-logo" alt="Fashion Larissa">
+        <p style="margin-top: 25px; letter-spacing: 4px; font-weight: 300; color: var(--p-dark);">L'EXCELLENCE PAR MICHEL...</p>
     </div>
-</section>
 
-</div>
-
-<!-- 👜 SACS -->
-<section id="sacs">
-    <h2 id="title-sacs" class="section-title">Sacs</h2>
-    <div class="gallery">
-        <img src="Images_Boutique/Sacs/Sac_1.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_2.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_3.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_4.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_5.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_6.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_7.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_8.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_9.jpeg">
-        <img src="Images_Boutique/Sacs/Sac_10.jpeg">
+    <div class="music-player" id="playerContainer" onclick="handleMusic()">
+        <div class="music-icon" id="musicBtn">▶</div>
+        <div class="music-text" id="statusText">Activer l'ambiance</div>
+        <audio id="bgMusic" loop preload="auto">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
     </div>
-</section>
 
-<!-- 👡 SANDALES -->
-<section id="sandales">
-    <h2 id="title-sandales" class="section-title">Sandales</h2>
-    <div class="gallery">
-        <img src="Images_Boutique/Sandales/Sandale_1.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_2.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_3.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_4.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_5.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_6.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_7.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_8.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_9.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_10.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_11.jpeg">
-        <img src="Images_Boutique/Sandales/Sandale_12.jpeg">
+    <div class="top-info-bar">
+        <span>Boutique Fashion Larissa - Cotonou, Bénin</span>
+        <div id="google_translate_element"></div>
     </div>
-</section>
 
-<!-- 👗 VÊTEMENTS -->
-<section id="vetements">
-    <h2 id="title-vetements" class="section-title">Vêtements</h2>
-    <div class="gallery">
-        <img src="Images_Boutique/Vetement/Vetement_1.jpeg">
-        <img src="Images_Boutique/Vetement/Vetement_2.jpeg">
-        <img src="Images_Boutique/Vetement/Vetement_3.jpeg">
+    <header>
+        <div class="header-content">
+            <p class="header-subtitle">L'Élégance à votre portée</p>
+            <h1>Fashion Larissa</h1>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#maroquinerie">Sacs</a>
+        <a href="#chaussures">Sandales</a>
+        <a href="#pretaporter">Vêtements</a>
+        <a href="#soins-bio">Soins</a>
+        <a href="#tissus">Pagne</a>
+    </nav>
+
+    <section class="brand-section">
+        <div class="logo-box">
+            <img src="./Logo_Boutique.png" alt="Logo Officiel">
+        </div>
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.4rem; color: var(--p-dark);">Le plaisir de bien se vêtir</h2>
+    </section>
+
+    <section class="larissa-profile-block">
+        <div class="larissa-card">
+            <div class="larissa-photo-wrapper">
+                <img src="./Images_Boutique/Larissa/Larissa.jpeg" alt="Larissa">
+            </div>
+            <span class="larissa-title">Entrepreneure Locale</span>
+            <h3>Larissa</h3>
+            <p class="larissa-bio">
+                "Larissa est une jeune femme battante qui a lancé sa boutique avec ses propres ressources. 
+                Véritable force locale à Cotonou, elle met tout son cœur à dénicher des articles qui plaisent 
+                et qui restent accessibles. Sa boutique est le fruit d'un travail acharné et d'une passion 
+                pour le style au quotidien."
+            </p>
+            <div style="margin-top: 40px; font-weight: 700; color: var(--p-dark);">
+                📍 Présente sur les marchés de Cotonou
+            </div>
+        </div>
+    </section>
+
+    <div id="maroquinerie" class="section-separator">
+        <h2>Nos Sacs à Main</h2>
     </div>
-</section>
-
-<!-- 🧴 SOINS -->
-<section id="soins">
-    <h2 id="title-soins" class="section-title">Soins</h2>
-    <div class="gallery">
-        <img src="Images_Boutique/Soins/Soins_1.jpeg">
-        <img src="Images_Boutique/Soins/Soins_2.jpeg">
-        <img src="Images_Boutique/Soins/Soins_3.jpeg">
+    <div class="products-container">
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_1.jpeg', 'Sac Mode 1')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_1.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 1</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_2.jpeg', 'Sac Mode 2')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_2.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 2</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_3.jpeg', 'Sac Mode 3')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_3.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 3</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_4.jpeg', 'Sac Mode 4')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_4.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 4</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_5.jpeg', 'Sac Mode 5')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_5.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 5</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_6.jpeg', 'Sac Mode 6')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_6.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 6</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_7.jpeg', 'Sac Mode 7')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_7.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 7</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_8.jpeg', 'Sac Mode 8')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_8.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 8</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_9.jpeg', 'Sac Mode 9')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_9.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 9</p></div>
+        </div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sacs/Sac_10.jpeg', 'Sac Mode 10')">
+            <div class="art-img-holder"><img src="./Images_Boutique/Sacs/Sac_10.jpeg"><div class="art-overlay"><span>Détails</span></div></div>
+            <div style="text-align: center; padding: 15px;"><p style="font-weight: 700;">Modèle Sac 10</p></div>
+        </div>
     </div>
-</section>
 
-<footer id="footer">
-    © Fashion Larissa – Présentation visuelle. Contact direct via WhatsApp.
-</footer>
+    <div id="chaussures" class="section-separator">
+        <h2>Sandales & Chaussures</h2>
+    </div>
+    <div class="products-container">
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_1.jpeg', 'Sandale 1')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_1.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_2.jpeg', 'Sandale 2')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_2.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_3.jpeg', 'Sandale 3')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_3.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_4.jpeg', 'Sandale 4')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_4.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_5.jpeg', 'Sandale 5')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_5.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_6.jpeg', 'Sandale 6')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_6.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_7.jpeg', 'Sandale 7')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_7.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_8.jpeg', 'Sandale 8')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_8.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_9.jpeg', 'Sandale 9')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_9.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_10.jpeg', 'Sandale 10')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_10.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_11.jpeg', 'Sandale 11')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_11.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Sandales/Sandale_12.jpeg', 'Sandale 12')"><div class="art-img-holder"><img src="./Images_Boutique/Sandales/Sandale_12.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+    </div>
 
-<div class="zoom-container" id="zoomBox">
-    <span class="close-btn" onclick="closeZoom()">✖</span>
-    <img id="zoomImage">
-</div>
+    <div id="pretaporter" class="section-separator">
+        <h2>Vêtements & Prêt-à-porter</h2>
+    </div>
+    <div class="products-container">
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Vetement/Vetement_1.jpeg', 'Vetement 1')"><div class="art-img-holder"><img src="./Images_Boutique/Vetement/Vetement_1.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Vetement/Vetement_2.jpeg', 'Vetement 2')"><div class="art-img-holder"><img src="./Images_Boutique/Vetement/Vetement_2.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Vetement/Vetement_3.jpeg', 'Vetement 3')"><div class="art-img-holder"><img src="./Images_Boutique/Vetement/Vetement_3.jpeg"><div class="art-overlay"><span>Voir</span></div></div></div>
+    </div>
 
-<script>
-    // Zoom sur les images
-    document.querySelectorAll('.gallery img').forEach(img => {
-        img.addEventListener('click', function() {
-            document.getElementById('zoomImage').src = this.src;
-            document.getElementById('zoomBox').style.display = 'flex';
+    <div id="soins-bio" class="section-separator">
+        <h2>Produits de Soins</h2>
+    </div>
+    <div class="products-container">
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Soins/Soins_1.jpeg', 'Soin 1')"><div class="art-img-holder"><img src="./Images_Boutique/Soins/Soins_1.jpeg"><div class="art-overlay"><span>Aperçu</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Soins/Soins_2.jpeg', 'Soin 2')"><div class="art-img-holder"><img src="./Images_Boutique/Soins/Soins_2.jpeg"><div class="art-overlay"><span>Aperçu</span></div></div></div>
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Soins/Soins_3.jpeg', 'Soin 3')"><div class="art-img-holder"><img src="./Images_Boutique/Soins/Soins_3.jpeg"><div class="art-overlay"><span>Aperçu</span></div></div></div>
+    </div>
+
+    <div id="tissus" class="section-separator">
+        <h2>Pagne & Tissus</h2>
+    </div>
+    <div class="products-container">
+        <div class="art-card" onclick="openProduct('./Images_Boutique/Pagne/Pagne_1.jpeg', 'Pagne 1')"><div class="art-img-holder"><img src="./Images_Boutique/Pagne/Pagne_1.jpeg"><div class="art-overlay"><span>Détails</span></div></div></div>
+    </div>
+
+    <section class="faq-section">
+        <h2 style="text-align: center; margin-bottom: 50px; font-family: 'Playfair Display'; font-size: 2.5rem;">Infos Utiles</h2>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Quel est le délai de livraison ? <span>+</span></div>
+            <div class="faq-answer">Larissa fait de son mieux pour vous satisfaire rapidement. Cependant, comme elle fait appel à des livreurs indépendants, le temps exact dépend de leur disponibilité et du trafic à Cotonou.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Quelle est la qualité des produits ? <span>+</span></div>
+            <div class="faq-answer">Larissa sélectionne rigoureusement chaque article pour vous offrir le meilleur rapport qualité-prix possible sur le marché local. Elle choisit ce qu'elle aimerait elle-même porter.</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Fashion Larissa</h4>
+                <p>Une petite boutique qui monte, tenue par une femme de talent. Soutenez l'économie locale du Bénin en choisissant vos articles ici.</p>
+                <p>📱 Contact : +229 66 01 87 13</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <p>• Vente au détail</p>
+                <p>• Conseil Style</p>
+                <p>• Expédition Provinces</p>
+            </div>
+            <div class="footer-col">
+                <h4>Réseaux</h4>
+                <p>Retrouvez Larissa sur WhatsApp pour toutes vos questions et commandes personnalisées.</p>
+            </div>
+        </div>
+        <div class="michel-credit">
+            &copy; 2026 Fashion Larissa | Design & Développement Web par <strong>Michel</strong>. <br>
+            <em>Projet réalisé dans le cadre d'un soutien à l'entrepreneuriat local.</em>
+        </div>
+    </footer>
+
+    <div id="productViewer" class="viewer-modal">
+        <div class="viewer-box">
+            <span class="viewer-close" onclick="closeProduct()">&times;</span>
+            <img id="viewerImg" src="" alt="Détail">
+            <div style="margin-top: 40px;">
+                <a id="waButton" href="#" target="_blank" style="background: var(--p-dark); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 800; display: inline-block;">CONTACTER LARISSA</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://www.tiktok.com/" class="btn-float tk-btn" target="_blank">📱</a>
+    <a href="https://wa.me/22966018713" class="btn-float wa-btn" target="_blank">💬</a>
+
+    <script>
+        // Masquer le loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 600);
+            }, 1200);
         });
-    });
 
-    function closeZoom() {
-        document.getElementById('zoomBox').style.display = 'none';
-    }
+        // Gestion Musique Améliorée
+        const music = document.getElementById('bgMusic');
+        const mBtn = document.getElementById('musicBtn');
+        const mStatus = document.getElementById('statusText');
+        const mContainer = document.getElementById('playerContainer');
+        let isPlaying = false;
 
-    // Traductions FR / EN
-    const translations = {
-        fr: {
-            "title": "Fashion Larissa",
-            "menu-sacs": "Sacs",
-            "menu-sandales": "Sandales",
-            "menu-vetements": "Vêtements",
-            "menu-pagne": "Pagne",
-            "menu-soins": "Soins",
-            "hero-tag": "Sélection élégante – Mode & Accessoires",
-            "hero-cta": "💬 Contact WhatsApp",
-            "larissa-title": "Larissa – Conseillère Mode",
-            "larissa-text": "Toujours prête à vous accompagner dans vos choix élégants : sacs, sandales, pagnes, vêtements et soins. 🌸",
-            "title-sacs": "Sacs",
-            "title-sandales": "Sandales",
-            "title-vetements": "Vêtements",
-            "title-pagne": "Pagne",
-            "title-soins": "Soins",
-            "footer": "© Fashion Larissa – Présentation visuelle. Contact direct via WhatsApp."
-        },
-        en: {
-            "title": "Fashion Larissa",
-            "menu-sacs": "Bags",
-            "menu-sandales": "Sandals",
-            "menu-vetements": "Clothing",
-            "menu-pagne": "Wax Fabric",
-            "menu-soins": "Care",
-            "hero-tag": "Elegant Selection – Fashion & Accessories",
-            "hero-cta": "💬 WhatsApp Contact",
-            "larissa-title": "Larissa – Fashion Advisor",
-            "larissa-text": "Always ready to guide you in elegant choices: bags, sandals, wax fabrics, clothing and beauty care. 🌸",
-            "title-sacs": "Bags",
-            "title-sandales": "Sandals",
-            "title-vetements": "Clothing",
-            "title-pagne": "Wax Fabric",
-            "title-soins": "Care",
-            "footer": "© Fashion Larissa – Visual presentation. Direct WhatsApp contact."
+        function handleMusic() {
+            if (isPlaying) {
+                music.pause();
+                mBtn.innerText = '▶';
+                mStatus.innerText = 'Activer l\'ambiance';
+                mContainer.classList.remove('music-playing');
+                isPlaying = false;
+            } else {
+                // Tentative de lecture avec gestion d'erreur
+                const playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        mBtn.innerText = '⏸';
+                        mStatus.innerText = 'Musique active';
+                        mContainer.classList.add('music-playing');
+                        isPlaying = true;
+                    }).catch(error => {
+                        console.log("Lecture bloquée par le navigateur :", error);
+                        alert("Veuillez autoriser le son sur votre navigateur pour profiter de l'ambiance !");
+                    });
+                }
+            }
         }
-    };
 
-    function setLanguage(lang) {
-        const t = translations[lang];
-        for (const id in t) {
-            const el = document.getElementById(id);
-            if (el) el.textContent = t[id];
+        // Gestion Modale
+        const modal = document.getElementById('productViewer');
+        const viewImg = document.getElementById('viewerImg');
+        const waBtn = document.getElementById('waButton');
+
+        function openProduct(imgSrc, name) {
+            viewImg.src = imgSrc;
+            const textMsg = encodeURIComponent("Bonjour Larissa ! J'ai vu cet article sur ton site et je voudrais en savoir plus : " + name);
+            waBtn.href = "https://wa.me/22966018713?text=" + textMsg;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
-    }
-</script>
 
-<a class="whatsapp-float"
-   href="https://wa.me/22966018713?text=Bonjour%20Larissa"
-   target="_blank">💬</a>
+        function closeProduct() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Toggle FAQ
+        function toggleFaq(el) {
+            const ans = el.nextElementSibling;
+            if (ans.style.maxHeight) {
+                ans.style.maxHeight = null;
+                el.querySelector('span').innerText = '+';
+            } else {
+                ans.style.maxHeight = ans.scrollHeight + "px";
+                el.querySelector('span').innerText = '-';
+            }
+        }
+
+        // Traduction Google
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'fr'}, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
