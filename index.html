@@ -1,1269 +1,823 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Larissa | Afro-Beat Luxury Collection</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@100;200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-    <style>
-        :root {
-            --gold: #D4AF37;
-            --gold-light: #F4E4A6;
-            --gold-dark: #B8860B;
-            --black: #0a0a0a;
-            --black-light: #1a1a1a;
-            --black-glass: rgba(10, 10, 10, 0.72);
-            --white-soft: rgba(255, 255, 255, 0.92);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        #particles-canvas,
-        #three-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        #particles-canvas {
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        #three-canvas {
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .overlay-gradient {
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, rgba(184, 134, 11, 0.06) 0%, transparent 50%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .scanlines {
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(212, 175, 55, 0.015) 2px,
-                rgba(212, 175, 55, 0.015) 4px
-            );
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .vignette {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(ellipse at center, transparent 38%, rgba(0,0,0,0.72) 100%);
-            z-index: 4;
-            pointer-events: none;
-        }
-
-        .main-content {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        .lang-switch {
-            position: fixed;
-            top: 18px;
-            right: 18px;
-            z-index: 2000;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        .lang-switch button {
-            border: 1px solid rgba(212, 175, 55, 0.45);
-            background: rgba(10, 10, 10, 0.72);
-            color: var(--gold-light);
-            padding: 10px 14px;
-            border-radius: 999px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            letter-spacing: 0.05em;
-            backdrop-filter: blur(14px);
-            transition: all 0.25s ease;
-        }
-
-        .lang-switch button:hover,
-        .lang-switch button.active {
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: #000;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
-            transform: translateY(-2px);
-        }
-
-        .luxury-header {
-            text-align: center;
-            margin-bottom: 58px;
-            position: relative;
-        }
-
-        .luxury-header::before,
-        .luxury-header::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            animation: linePulse 3s ease-in-out infinite;
-        }
-
-        .luxury-header::before {
-            top: -20px;
-        }
-
-        .luxury-header::after {
-            bottom: -20px;
-            animation-direction: reverse;
-        }
-
-        @keyframes linePulse {
-            0%, 100% { opacity: 0.3; width: 150px; }
-            50% { opacity: 1; width: 250px; }
-        }
-
-        .brand-name {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 5vw, 4.2rem);
-            font-weight: 900;
-            letter-spacing: 0.28em;
-            color: var(--gold);
-            text-shadow:
-                0 0 20px rgba(212, 175, 55, 0.55),
-                0 0 45px rgba(212, 175, 55, 0.32),
-                0 0 90px rgba(212, 175, 55, 0.14);
-            animation: goldGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes goldGlow {
-            0%, 100% {
-                text-shadow: 0 0 20px rgba(212, 175, 55, 0.55), 0 0 45px rgba(212, 175, 55, 0.32), 0 0 90px rgba(212, 175, 55, 0.14);
-            }
-            50% {
-                text-shadow: 0 0 34px rgba(212, 175, 55, 0.9), 0 0 70px rgba(212, 175, 55, 0.55), 0 0 120px rgba(212, 175, 55, 0.26);
-            }
-        }
-
-        .brand-subtitle {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: clamp(0.95rem, 2vw, 1.35rem);
-            color: var(--gold-light);
-            letter-spacing: 0.45em;
-            margin-top: 16px;
-            opacity: 0.86;
-            text-transform: uppercase;
-        }
-
-        .brand-tagline {
-            font-weight: 200;
-            font-size: clamp(0.72rem, 1.5vw, 0.9rem);
-            color: rgba(244, 228, 166, 0.56);
-            letter-spacing: 0.75em;
-            margin-top: 18px;
-            text-transform: uppercase;
-        }
-
-        .deco-diamond {
-            width: 12px;
-            height: 12px;
-            background: var(--gold);
-            transform: rotate(45deg);
-            margin: 30px auto;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.65);
-            animation: diamondPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes diamondPulse {
-            0%, 100% { transform: rotate(45deg) scale(1); opacity: 0.6; }
-            50% { transform: rotate(45deg) scale(1.35); opacity: 1; }
-        }
-
-        .player-container {
-            background: rgba(10, 10, 10, 0.44);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-            border: 1px solid rgba(212, 175, 55, 0.24);
-            border-radius: 32px;
-            padding: 50px;
-            max-width: 720px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            box-shadow:
-                0 0 70px rgba(212, 175, 55, 0.12),
-                inset 0 0 70px rgba(212, 175, 55, 0.035);
-        }
-
-        .player-container::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, var(--gold), transparent, var(--gold), transparent, var(--gold));
-            background-size: 400% 400%;
-            border-radius: 32px;
-            z-index: -1;
-            animation: borderGlow 8s linear infinite;
-            opacity: 0.32;
-        }
-
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .track-info {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .track-label {
-            font-family: 'Cinzel', serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.48em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 14px;
-            opacity: 0.76;
-        }
-
-        .track-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.55rem, 3vw, 2.55rem);
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .track-artist {
-            font-weight: 300;
-            font-size: 0.9rem;
-            color: var(--gold-light);
-            letter-spacing: 0.2em;
-        }
-
-        .visualizer-wrapper {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            margin: 30px 0;
-            border-radius: 18px;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.32);
-            border: 1px solid rgba(212, 175, 55, 0.13);
-        }
-
-        #visualizer-canvas {
-            width: 100%;
-            height: 100%;
-        }
-
-        .visualizer-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.32) 100%);
-            pointer-events: none;
-        }
-
-        .progress-container {
-            margin: 30px 0;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
-            border-radius: 20px;
-            width: 0%;
-            box-shadow: 0 0 14px rgba(212, 175, 55, 0.56);
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-size: 0.76rem;
-            color: rgba(255, 255, 255, 0.58);
-            font-weight: 300;
-            letter-spacing: 0.1em;
-        }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .control-btn {
-            background: none;
-            border: none;
-            color: var(--gold-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .control-btn:hover {
-            color: var(--gold);
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.55));
-        }
-
-        .control-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        .play-btn {
-            width: 82px;
-            height: 82px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: #000;
-            box-shadow:
-                0 0 34px rgba(212, 175, 55, 0.45),
-                0 0 70px rgba(212, 175, 55, 0.22),
-                inset 0 0 22px rgba(255, 255, 255, 0.22);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .play-btn svg {
-            width: 33px;
-            height: 33px;
-            fill: #000;
-            position: relative;
-            z-index: 1;
-        }
-
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 25px;
-            justify-content: center;
-        }
-
-        .volume-slider {
-            width: 130px;
-            height: 4px;
-            -webkit-appearance: none;
-            appearance: none;
-            background: rgba(255, 255, 255, 0.14);
-            border-radius: 2px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 15px;
-            height: 15px;
-            background: var(--gold);
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.65);
-        }
-
-        .file-input-wrapper {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .file-input-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 34px;
-            background: transparent;
-            border: 1px solid rgba(212, 175, 55, 0.42);
-            border-radius: 999px;
-            color: var(--gold);
-            font-size: 0.8rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.35s ease;
-        }
-
-        .file-input-label:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.22);
-            background: rgba(212, 175, 55, 0.06);
-        }
-
-        #audio-file {
-            display: none;
-        }
-
-        .luxury-footer {
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .footer-line {
-            width: 120px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 0 auto 20px;
-        }
-
-        .footer-text {
-            font-family: 'Cinzel', serif;
-            font-size: 0.66rem;
-            letter-spacing: 0.38em;
-            color: rgba(212, 175, 55, 0.45);
-            text-transform: uppercase;
-        }
-
-        .floating-particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0;
-        }
-
-        .loading-screen {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 3000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 1s ease, visibility 1s ease;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loading-text {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            letter-spacing: 0.45em;
-            margin-bottom: 30px;
-            animation: loadingPulse 1.5s ease-in-out infinite;
-            text-align: center;
-        }
-
-        @keyframes loadingPulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .loading-bar {
-            width: 220px;
-            height: 2px;
-            background: rgba(212, 175, 55, 0.2);
-            border-radius: 1px;
-            overflow: hidden;
-        }
-
-        .loading-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
-            animation: loadingFill 2s ease-in-out forwards;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        @keyframes loadingFill {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        .eq-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 30px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .eq-bar {
-            width: 4px;
-            background: linear-gradient(to top, var(--gold-dark), var(--gold));
-            border-radius: 2px;
-            opacity: 0.65;
-            animation: eqDance 1s ease-in-out infinite;
-        }
-
-        .eq-bar:nth-child(1) { height: 15px; animation-delay: 0s; }
-        .eq-bar:nth-child(2) { height: 25px; animation-delay: 0.1s; }
-        .eq-bar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
-        .eq-bar:nth-child(4) { height: 30px; animation-delay: 0.3s; }
-        .eq-bar:nth-child(5) { height: 18px; animation-delay: 0.4s; }
-        .eq-bar:nth-child(6) { height: 22px; animation-delay: 0.5s; }
-        .eq-bar:nth-child(7) { height: 28px; animation-delay: 0.6s; }
-        .eq-bar:nth-child(8) { height: 16px; animation-delay: 0.7s; }
-        .eq-bar:nth-child(9) { height: 24px; animation-delay: 0.8s; }
-        .eq-bar:nth-child(10) { height: 20px; animation-delay: 0.9s; }
-
-        @keyframes eqDance {
-            0%, 100% { transform: scaleY(1); opacity: 0.6; }
-            50% { transform: scaleY(1.5); opacity: 1; }
-        }
-
-        @media (max-width: 680px) {
-            .main-content {
-                padding: 80px 14px 34px;
-            }
-
-            .lang-switch {
-                top: 10px;
-                right: 10px;
-                left: 10px;
-                justify-content: center;
-            }
-
-            .lang-switch button {
-                padding: 8px 11px;
-                font-size: 0.78rem;
-            }
-
-            .brand-name {
-                letter-spacing: 0.12em;
-            }
-
-            .brand-subtitle,
-            .brand-tagline {
-                letter-spacing: 0.24em;
-            }
-
-            .player-container {
-                padding: 30px 18px;
-                border-radius: 24px;
-            }
-
-            .controls {
-                gap: 20px;
-            }
-
-            .play-btn {
-                width: 66px;
-                height: 66px;
-            }
-
-            .visualizer-wrapper {
-                height: 170px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fashion Larissa – Boutique</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ========================= */
+/* FOND ANIMÉ */
+/* ========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at top,#ff0099 0%,transparent 30%),
+    radial-gradient(circle at bottom,#ffd700 0%,transparent 30%),
+    #050505;
+    z-index:-3;
+}
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background-image:url('Images_Boutique/etoiles_or.png');
+    opacity:0.15;
+    animation:moveStars 80s linear infinite;
+    z-index:-2;
+}
+
+@keyframes moveStars{
+    from{background-position:0 0;}
+    to{background-position:2000px 2000px;}
+}
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+header{
+    position:relative;
+    padding:40px 20px;
+    text-align:center;
+    background:linear-gradient(90deg,#ff008c,#ff4db8,#ffd700);
+    background-size:300% 300%;
+    animation:gradientMove 8s ease infinite;
+    box-shadow:0 5px 30px rgba(255,0,128,0.5);
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+header h1{
+    font-family:'Cinzel',serif;
+    font-size:70px;
+    letter-spacing:8px;
+    color:white;
+    text-shadow:0 0 15px gold;
+}
+
+/* ========================= */
+/* MENU */
+/* ========================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:rgba(0,0,0,0.85);
+    backdrop-filter:blur(10px);
+    padding:15px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+nav a{
+    color:#ffd700;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#ff4db8;
+    transform:scale(1.1);
+}
+
+/* ========================= */
+/* LANGUES */
+/* ========================= */
+
+.lang-switch{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:2000;
+    display:flex;
+    gap:10px;
+}
+
+.lang-switch button{
+    background:black;
+    color:#ffd700;
+    border:1px solid #ffd700;
+    padding:10px 15px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.lang-switch button:hover{
+    background:#ffd700;
+    color:black;
+}
+
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.hero{
+    text-align:center;
+    padding:80px 20px 50px;
+}
+
+.hero h2{
+    font-size:45px;
+    color:#ffd700;
+    margin-bottom:20px;
+    text-shadow:0 0 15px rgba(255,215,0,0.8);
+}
+
+.hero p{
+    max-width:850px;
+    margin:auto;
+    line-height:1.8;
+    color:#ddd;
+    font-size:18px;
+}
+
+.hero-btn{
+    margin-top:30px;
+    display:inline-block;
+    background:linear-gradient(90deg,#ff008c,#ffd700);
+    padding:15px 35px;
+    border-radius:40px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    box-shadow:0 0 25px rgba(255,0,140,0.5);
+    transition:0.3s;
+}
+
+.hero-btn:hover{
+    transform:scale(1.08);
+}
+
+/* ========================= */
+/* CARD LARISSA */
+/* ========================= */
+
+.larissa-section{
+    display:flex;
+    justify-content:center;
+    padding:40px 20px;
+}
+
+.larissa-card{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:35px;
+    max-width:420px;
+    text-align:center;
+    box-shadow:0 0 35px rgba(255,215,0,0.2);
+    transition:0.4s;
+}
+
+.larissa-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 45px rgba(255,0,128,0.4);
+}
+
+.larissa-photo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #ffd700;
+    box-shadow:0 0 30px gold;
+}
+
+.larissa-card h3{
+    margin-top:20px;
+    color:#ffd700;
+    font-size:28px;
+}
+
+.larissa-card p{
+    margin-top:15px;
+    color:#eee;
+    line-height:1.7;
+}
+
+/* ========================= */
+/* TITRES */
+/* ========================= */
+
+.section-title{
+    text-align:center;
+    font-size:45px;
+    margin-top:80px;
+    color:#ffd700;
+    text-shadow:0 0 15px rgba(255,215,0,0.6);
+}
+
+/* ========================= */
+/* GALERIES */
+/* ========================= */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:25px;
+    padding:40px;
+}
+
+.gallery img{
+    width:180px;
+    height:180px;
+    object-fit:cover;
+    border-radius:18px;
+    margin:auto;
+    cursor:pointer;
+    transition:0.4s;
+    border:2px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 15px rgba(255,215,0,0.2);
+}
+
+.gallery img:hover{
+    transform:scale(1.12);
+    box-shadow:0 0 25px rgba(255,0,140,0.7);
+}
+
+/* ========================= */
+/* PUB RESTAURATION PHOTO */
+/* ========================= */
+
+.pub-section{
+    padding:70px 20px;
+}
+
+.pub-card{
+    max-width:1200px;
+    margin:auto;
+    background:rgba(255,255,255,0.08);
+    border-radius:30px;
+    padding:40px;
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    align-items:center;
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+.pub-card img{
+    width:400px;
+    max-width:100%;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,215,0,0.3);
+}
+
+.pub-text{
+    flex:1;
+}
+
+.pub-text h2{
+    font-size:45px;
+    color:#ffd700;
+    margin-bottom:20px;
+}
+
+.pub-text p{
+    line-height:1.9;
+    color:#eee;
+    margin-bottom:20px;
+}
+
+.pub-text ul{
+    line-height:2;
+    color:#ffd700;
+    font-weight:600;
+}
+
+.contact-box{
+    margin-top:25px;
+    padding:18px;
+    border-radius:15px;
+    background:rgba(255,215,0,0.12);
+    border:1px solid rgba(255,215,0,0.3);
+}
+
+/* ========================= */
+/* AUDIO */
+/* ========================= */
+
+.music-player{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.music-player button{
+    background:linear-gradient(90deg,#ff008c,#ffd700);
+    border:none;
+    color:white;
+    padding:15px 30px;
+    border-radius:40px;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+    box-shadow:0 0 20px rgba(255,0,128,0.5);
+}
+
+/* ========================= */
+/* ZOOM */
+/* ========================= */
+
+.zoom-container{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:5000;
+}
+
+.zoom-container img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:20px;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:25px;
+    background:white;
+    color:black;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer{
+    margin-top:80px;
+    text-align:center;
+    padding:35px;
+    background:black;
+    color:#999;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:768px){
+
+header h1{
+    font-size:40px;
+}
+
+.section-title{
+    font-size:32px;
+}
+
+.hero h2{
+    font-size:30px;
+}
+
+.pub-text h2{
+    font-size:32px;
+}
+
+.gallery img{
+    width:150px;
+    height:150px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <div class="loading-screen" id="loading-screen">
-        <div class="loading-text" id="loading-text">CHARGEMENT</div>
-        <div class="loading-bar">
-            <div class="loading-bar-fill"></div>
-        </div>
-    </div>
-
-    <div class="lang-switch">
-        <button type="button" id="btn-fr" class="active" onclick="setLanguage('fr')">🇫🇷 FR</button>
-        <button type="button" id="btn-en" onclick="setLanguage('en')">🇬🇧 EN</button>
-        <button type="button" id="btn-es" onclick="setLanguage('es')">🇪🇸 ES</button>
-    </div>
-
-    <canvas id="three-canvas"></canvas>
-    <canvas id="particles-canvas"></canvas>
-
-    <div class="overlay-gradient"></div>
-    <div class="scanlines"></div>
-    <div class="vignette"></div>
-
-    <div class="main-content">
-
-        <header class="luxury-header">
-            <h1 class="brand-name">FASHION LARISSA</h1>
-            <p class="brand-subtitle" id="brand-subtitle">Collection Afro-Beat</p>
-            <p class="brand-tagline" id="brand-tagline">Haute Qualité</p>
-            <div class="deco-diamond"></div>
-        </header>
-
-        <div class="player-container">
-
-            <div class="eq-bars" id="eq-bars">
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-                <div class="eq-bar"></div>
-            </div>
-
-            <div class="track-info">
-                <div class="track-label" id="track-label">En cours de lecture</div>
-                <h2 class="track-title" id="track-title">Collection Afro-Beat Dance</h2>
-                <p class="track-artist" id="track-artist">Haute Qualité</p>
-            </div>
-
-            <div class="visualizer-wrapper">
-                <canvas id="visualizer-canvas"></canvas>
-                <div class="visualizer-overlay"></div>
-            </div>
-
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-                <div class="time-display">
-                    <span id="current-time">0:00</span>
-                    <span id="duration">0:00</span>
-                </div>
-            </div>
-
-            <div class="controls">
-                <button class="control-btn" id="prev-btn" title="Précédent" aria-label="Précédent">
-                    <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-                </button>
-
-                <button class="control-btn play-btn" id="play-btn" title="Lecture/Pause" aria-label="Lecture/Pause">
-                    <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    <svg id="pause-icon" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-
-                <button class="control-btn" id="next-btn" title="Suivant" aria-label="Suivant">
-                    <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-                </button>
-            </div>
-
-            <div class="volume-container">
-                <svg class="volume-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                </svg>
-                <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="70">
-            </div>
-
-            <div class="file-input-wrapper">
-                <label for="audio-file" class="file-input-label" id="file-label">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/>
-                    </svg>
-                    <span id="file-label-text">Choisir un fichier audio</span>
-                </label>
-                <input type="file" id="audio-file" accept="audio/*">
-            </div>
-        </div>
-
-        <footer class="luxury-footer">
-            <div class="footer-line"></div>
-            <p class="footer-text" id="footer-text">Fashion Larissa — Musique Premium</p>
-        </footer>
-    </div>
-
-    <audio id="audio-element" preload="metadata"></audio>
-
-    <script>
-        const DEFAULT_AUDIO_SRC = "musique1/collection%20afro-beat%20dance%20haute%20qualit%C3%A9.mp3";
-
-        const translations = {
-            fr: {
-                htmlLang: "fr",
-                pageTitle: "Fashion Larissa | Afro-Beat Luxury Collection",
-                loading: "CHARGEMENT",
-                brandSubtitle: "Collection Afro-Beat",
-                brandTagline: "Haute Qualité",
-                trackLabel: "En cours de lecture",
-                trackTitle: "Collection Afro-Beat Dance",
-                trackArtist: "Haute Qualité",
-                fileLabel: "Choisir un fichier audio",
-                footer: "Fashion Larissa — Musique Premium",
-                prevTitle: "Précédent",
-                playTitle: "Lecture/Pause",
-                nextTitle: "Suivant"
-            },
-            en: {
-                htmlLang: "en",
-                pageTitle: "Fashion Larissa | Afro-Beat Luxury Collection",
-                loading: "LOADING",
-                brandSubtitle: "Afro-Beat Collection",
-                brandTagline: "High Quality",
-                trackLabel: "Now playing",
-                trackTitle: "Afro-Beat Dance Collection",
-                trackArtist: "High Quality",
-                fileLabel: "Choose an audio file",
-                footer: "Fashion Larissa — Premium Music",
-                prevTitle: "Previous",
-                playTitle: "Play/Pause",
-                nextTitle: "Next"
-            },
-            es: {
-                htmlLang: "es",
-                pageTitle: "Fashion Larissa | Colección Afro-Beat de Lujo",
-                loading: "CARGANDO",
-                brandSubtitle: "Colección Afro-Beat",
-                brandTagline: "Alta Calidad",
-                trackLabel: "Reproduciendo ahora",
-                trackTitle: "Colección Afro-Beat Dance",
-                trackArtist: "Alta Calidad",
-                fileLabel: "Elegir un archivo de audio",
-                footer: "Fashion Larissa — Música Premium",
-                prevTitle: "Anterior",
-                playTitle: "Reproducir/Pausa",
-                nextTitle: "Siguiente"
-            }
-        };
-
-        function setLanguage(lang) {
-            const t = translations[lang] || translations.fr;
-
-            document.documentElement.lang = t.htmlLang;
-            document.title = t.pageTitle;
-
-            document.getElementById("loading-text").textContent = t.loading;
-            document.getElementById("brand-subtitle").textContent = t.brandSubtitle;
-            document.getElementById("brand-tagline").textContent = t.brandTagline;
-            document.getElementById("track-label").textContent = t.trackLabel;
-
-            if (!audioFile.files || !audioFile.files[0]) {
-                document.getElementById("track-title").textContent = t.trackTitle;
-            }
-
-            document.getElementById("track-artist").textContent = t.trackArtist;
-            document.getElementById("file-label-text").textContent = t.fileLabel;
-            document.getElementById("footer-text").textContent = t.footer;
-
-            document.getElementById("prev-btn").title = t.prevTitle;
-            document.getElementById("prev-btn").setAttribute("aria-label", t.prevTitle);
-            document.getElementById("play-btn").title = t.playTitle;
-            document.getElementById("play-btn").setAttribute("aria-label", t.playTitle);
-            document.getElementById("next-btn").title = t.nextTitle;
-            document.getElementById("next-btn").setAttribute("aria-label", t.nextTitle);
-
-            document.querySelectorAll(".lang-switch button").forEach(btn => btn.classList.remove("active"));
-            const activeButton = document.getElementById("btn-" + lang);
-            if (activeButton) activeButton.classList.add("active");
-
-            localStorage.setItem("fashionLarissaLang", lang);
-        }
-
-        setTimeout(() => {
-            document.getElementById('loading-screen').classList.add('hidden');
-        }, 2200);
-
-        const threeCanvas = document.getElementById('three-canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        camera.position.z = 5;
-
-        const sphereGeometry = new THREE.IcosahedronGeometry(2, 4);
-        const sphereMaterial = new THREE.MeshBasicMaterial({
-            color: 0xD4AF37,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.15
-        });
-        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-        scene.add(sphere);
-
-        const glowGeometry = new THREE.SphereGeometry(1.8, 32, 32);
-        const glowMaterial = new THREE.MeshBasicMaterial({
-            color: 0xD4AF37,
-            transparent: true,
-            opacity: 0.05,
-            side: THREE.BackSide
-        });
-        const glowSphere = new THREE.Mesh(glowGeometry, glowMaterial);
-        scene.add(glowSphere);
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2000;
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 20;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.02,
-            color: 0xD4AF37,
-            transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending
-        });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        const rings = [];
-        for (let i = 0; i < 3; i++) {
-            const ringGeometry = new THREE.TorusGeometry(2.5 + i * 0.8, 0.01, 16, 100);
-            const ringMaterial = new THREE.MeshBasicMaterial({
-                color: 0xD4AF37,
-                transparent: true,
-                opacity: 0.1 - i * 0.02
-            });
-            const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-            ring.rotation.x = Math.PI / 2;
-            ring.rotation.z = i * 0.5;
-            scene.add(ring);
-            rings.push(ring);
-        }
-
-        let audioLevel = 0;
-        let time = 0;
-
-        function animateThree() {
-            requestAnimationFrame(animateThree);
-            time += 0.01;
-
-            sphere.rotation.y += 0.002 + audioLevel * 0.01;
-            sphere.rotation.x += 0.001;
-
-            const scale = 1 + audioLevel * 0.3;
-            sphere.scale.set(scale, scale, scale);
-
-            glowSphere.material.opacity = 0.05 + audioLevel * 0.15;
-            glowSphere.scale.set(scale * 1.1, scale * 1.1, scale * 1.1);
-
-            particlesMesh.rotation.y += 0.0005;
-            particlesMesh.rotation.x += 0.0002;
-
-            rings.forEach((ring, i) => {
-                ring.rotation.z += 0.002 * (i + 1);
-                ring.rotation.x = Math.PI / 2 + Math.sin(time + i) * 0.1;
-                ring.scale.setScalar(1 + audioLevel * 0.2);
-            });
-
-            renderer.render(scene, camera);
-        }
-        animateThree();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        const pCanvas = document.getElementById('particles-canvas');
-        const pCtx = pCanvas.getContext('2d');
-        let pWidth, pHeight;
-
-        function resizePCanvas() {
-            pWidth = window.innerWidth;
-            pHeight = window.innerHeight;
-            pCanvas.width = pWidth;
-            pCanvas.height = pHeight;
-        }
-        resizePCanvas();
-        window.addEventListener('resize', resizePCanvas);
-
-        const bgParticles = [];
-        const bgParticleCount = 80;
-
-        class BgParticle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * pWidth;
-                this.y = Math.random() * pHeight;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.3;
-                this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.5 + 0.1;
-                this.life = 0;
-                this.maxLife = Math.random() * 200 + 100;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life++;
-
-                if (this.life > this.maxLife || this.x < 0 || this.x > pWidth || this.y < 0 || this.y > pHeight) {
-                    this.reset();
-                }
-            }
-
-            draw() {
-                const fade = Math.sin((this.life / this.maxLife) * Math.PI);
-                pCtx.beginPath();
-                pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                pCtx.fillStyle = `rgba(212, 175, 55, ${this.opacity * fade})`;
-                pCtx.fill();
-            }
-        }
-
-        for (let i = 0; i < bgParticleCount; i++) {
-            bgParticles.push(new BgParticle());
-        }
-
-        function animateParticles() {
-            pCtx.clearRect(0, 0, pWidth, pHeight);
-
-            bgParticles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-
-            for (let i = 0; i < bgParticles.length; i++) {
-                for (let j = i + 1; j < bgParticles.length; j++) {
-                    const dx = bgParticles[i].x - bgParticles[j].x;
-                    const dy = bgParticles[i].y - bgParticles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 150) {
-                        pCtx.beginPath();
-                        pCtx.moveTo(bgParticles[i].x, bgParticles[i].y);
-                        pCtx.lineTo(bgParticles[j].x, bgParticles[j].y);
-                        pCtx.strokeStyle = `rgba(212, 175, 55, ${0.05 * (1 - dist / 150)})`;
-                        pCtx.lineWidth = 0.5;
-                        pCtx.stroke();
-                    }
-                }
-            }
-
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-        const audio = document.getElementById('audio-element');
-        const playBtn = document.getElementById('play-btn');
-        const playIcon = document.getElementById('play-icon');
-        const pauseIcon = document.getElementById('pause-icon');
-        const progressBar = document.getElementById('progress-bar');
-        const progressFill = document.getElementById('progress-fill');
-        const currentTimeEl = document.getElementById('current-time');
-        const durationEl = document.getElementById('duration');
-        const volumeSlider = document.getElementById('volume-slider');
-        const audioFile = document.getElementById('audio-file');
-        const trackTitle = document.getElementById('track-title');
-        const eqBars = document.querySelectorAll('.eq-bar');
-
-        audio.src = DEFAULT_AUDIO_SRC;
-
-        let audioContext, analyser, source, dataArray;
-        let isPlaying = false;
-
-        function initAudioContext() {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                analyser.fftSize = 256;
-                source = audioContext.createMediaElementSource(audio);
-                source.connect(analyser);
-                analyser.connect(audioContext.destination);
-                dataArray = new Uint8Array(analyser.frequencyBinCount);
-            }
-
-            if (audioContext.state === "suspended") {
-                audioContext.resume();
-            }
-        }
-
-        const vizCanvas = document.getElementById('visualizer-canvas');
-        const vizCtx = vizCanvas.getContext('2d');
-        let vizWidth, vizHeight;
-
-        function resizeViz() {
-            const wrapper = vizCanvas.parentElement;
-            vizWidth = wrapper.offsetWidth;
-            vizHeight = wrapper.offsetHeight;
-            vizCanvas.width = vizWidth;
-            vizCanvas.height = vizHeight;
-        }
-        resizeViz();
-        window.addEventListener('resize', resizeViz);
-
-        function drawVisualizer() {
-            requestAnimationFrame(drawVisualizer);
-
-            vizCtx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-            vizCtx.fillRect(0, 0, vizWidth, vizHeight);
-
-            if (!analyser || !isPlaying) {
-                const barCount = 64;
-                const barWidth = vizWidth / barCount;
-
-                for (let i = 0; i < barCount; i++) {
-                    const height = Math.sin(time * 2 + i * 0.2) * 20 + 30;
-                    const x = i * barWidth;
-                    const y = vizHeight - height;
-
-                    const gradient = vizCtx.createLinearGradient(0, vizHeight, 0, y);
-                    gradient.addColorStop(0, 'rgba(212, 175, 55, 0.1)');
-                    gradient.addColorStop(1, 'rgba(212, 175, 55, 0.4)');
-
-                    vizCtx.fillStyle = gradient;
-                    vizCtx.fillRect(x, y, barWidth - 2, height);
-                }
-
-                audioLevel = 0.05;
-                return;
-            }
-
-            analyser.getByteFrequencyData(dataArray);
-
-            const barCount = 64;
-            const barWidth = vizWidth / barCount;
-            let sum = 0;
-
-            for (let i = 0; i < barCount; i++) {
-                const dataIndex = Math.floor(i * (dataArray.length / barCount));
-                const value = dataArray[dataIndex];
-                sum += value;
-
-                const percent = value / 255;
-                const height = percent * vizHeight * 0.9;
-                const x = i * barWidth;
-                const y = vizHeight - height;
-
-                const hue = 45 + (percent * 15);
-                const gradient = vizCtx.createLinearGradient(0, vizHeight, 0, y);
-                gradient.addColorStop(0, `hsla(${hue}, 80%, 30%, 0.3)`);
-                gradient.addColorStop(0.5, `hsla(${hue}, 80%, 50%, 0.6)`);
-                gradient.addColorStop(1, `hsla(${hue}, 80%, 70%, 0.9)`);
-
-                vizCtx.fillStyle = gradient;
-                vizCtx.fillRect(x, y, barWidth - 2, height);
-
-                vizCtx.shadowColor = `hsla(${hue}, 80%, 50%, 0.5)`;
-                vizCtx.shadowBlur = 10;
-                vizCtx.fillRect(x, y, barWidth - 2, 2);
-                vizCtx.shadowBlur = 0;
-            }
-
-            audioLevel = (sum / barCount) / 255;
-
-            eqBars.forEach((bar, i) => {
-                const dataIndex = Math.floor(i * (dataArray.length / eqBars.length));
-                const value = dataArray[dataIndex] / 255;
-                bar.style.height = `${15 + value * 30}px`;
-                bar.style.opacity = 0.3 + value * 0.7;
-            });
-        }
-        drawVisualizer();
-
-        playBtn.addEventListener('click', () => {
-            initAudioContext();
-
-            if (audio.paused) {
-                audio.play().then(() => {
-                    isPlaying = true;
-                    playIcon.style.display = 'none';
-                    pauseIcon.style.display = 'block';
-                    if (window.gsap) {
-                        gsap.to(playBtn, { scale: 1.1, duration: 0.2, yoyo: true, repeat: 1 });
-                    }
-                }).catch(error => {
-                    alert("Impossible de lire l'audio. Vérifie le nom du dossier et du fichier MP3.");
-                    console.error(error);
-                });
-            } else {
-                audio.pause();
-                isPlaying = false;
-                playIcon.style.display = 'block';
-                pauseIcon.style.display = 'none';
-            }
-        });
-
-        audioFile.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-
-            if (file) {
-                const url = URL.createObjectURL(file);
-                audio.src = url;
-                trackTitle.textContent = file.name.replace(/\.[^/.]+$/, "");
-
-                initAudioContext();
-
-                audio.play().then(() => {
-                    isPlaying = true;
-                    playIcon.style.display = 'none';
-                    pauseIcon.style.display = 'block';
-                }).catch(error => console.error(error));
-            }
-        });
-
-        audio.addEventListener('timeupdate', () => {
-            if (!audio.duration) return;
-            const percent = (audio.currentTime / audio.duration) * 100;
-            progressFill.style.width = `${percent}%`;
-            currentTimeEl.textContent = formatTime(audio.currentTime);
-        });
-
-        audio.addEventListener('loadedmetadata', () => {
-            durationEl.textContent = formatTime(audio.duration);
-        });
-
-        audio.addEventListener('ended', () => {
-            isPlaying = false;
-            playIcon.style.display = 'block';
-            pauseIcon.style.display = 'none';
-            progressFill.style.width = '0%';
-        });
-
-        progressBar.addEventListener('click', (e) => {
-            if (!audio.duration) return;
-            const rect = progressBar.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
-            audio.currentTime = percent * audio.duration;
-        });
-
-        volumeSlider.addEventListener('input', (e) => {
-            audio.volume = e.target.value / 100;
-        });
-        audio.volume = 0.7;
-
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return '0:00';
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs.toString().padStart(2, '0')}`;
-        }
-
-        if (window.gsap) {
-            gsap.from('.luxury-header', {
-                y: -50,
-                opacity: 0,
-                duration: 1.5,
-                ease: 'power3.out',
-                delay: 2.2
-            });
-
-            gsap.from('.player-container', {
-                y: 80,
-                opacity: 0,
-                duration: 1.5,
-                ease: 'power3.out',
-                delay: 2.7
-            });
-
-            gsap.from('.luxury-footer', {
-                y: 30,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out',
-                delay: 3.1
-            });
-
-            document.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 2;
-                const y = (e.clientY / window.innerHeight - 0.5) * 2;
-
-                gsap.to(particlesMesh.rotation, {
-                    x: y * 0.1,
-                    y: x * 0.1,
-                    duration: 1,
-                    ease: 'power2.out'
-                });
-            });
-
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('.control-btn') || e.target.closest('.file-input-label') || e.target.closest('.lang-switch')) return;
-
-                for (let i = 0; i < 8; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'floating-particle';
-                    particle.style.left = e.clientX + 'px';
-                    particle.style.top = e.clientY + 'px';
-                    document.body.appendChild(particle);
-
-                    const angle = (Math.PI * 2 * i) / 8;
-                    const distance = 50 + Math.random() * 100;
-
-                    gsap.to(particle, {
-                        x: Math.cos(angle) * distance,
-                        y: Math.sin(angle) * distance,
-                        opacity: 1,
-                        scale: 2,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-
-                    gsap.to(particle, {
-                        opacity: 0,
-                        scale: 0,
-                        duration: 0.8,
-                        delay: 0.3,
-                        ease: 'power2.in',
-                        onComplete: () => particle.remove()
-                    });
-                }
-            });
-        }
-
-        const savedLang = localStorage.getItem("fashionLarissaLang") || "fr";
-        setLanguage(savedLang);
-    </script>
+<div class="stars"></div>
+
+<!-- LANGUES -->
+
+<div class="lang-switch">
+    <button onclick="setLanguage('fr')">FR</button>
+    <button onclick="setLanguage('en')">EN</button>
+    <button onclick="setLanguage('es')">ES</button>
+</div>
+
+<!-- HEADER -->
+
+<header>
+    <h1 id="main-title">FASHION LARISSA</h1>
+</header>
+
+<!-- MENU -->
+
+<nav>
+    <a id="menu-sacs" href="#sacs">Sacs</a>
+    <a id="menu-sandales" href="#sandales">Sandales</a>
+    <a id="menu-vetements" href="#vetements">Vêtements</a>
+    <a id="menu-pagne" href="#pagne">Pagne</a>
+    <a id="menu-soins" href="#soins">Soins</a>
+    <a id="menu-restauration" href="#restauration">Restauration Photo</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h2 id="hero-title">
+        Élégance • Mode • Beauté • Style
+    </h2>
+
+    <p id="hero-text">
+        Découvrez l’univers Fashion Larissa :
+        sacs, sandales, vêtements, soins, pagnes
+        et désormais restauration professionnelle
+        de vieilles photos.
+    </p>
+
+    <a class="hero-btn"
+       href="https://wa.me/2290166018713"
+       target="_blank">
+       WhatsApp Larissa
+    </a>
+
+</section>
+
+<!-- LARISSA -->
+
+<section class="larissa-section">
+
+<div class="larissa-card">
+
+<img src="Images_Boutique/Larissa/Larissa.jpeg"
+class="larissa-photo">
+
+<h3 id="larissa-name">
+Larissa – Conseillère Mode
+</h3>
+
+<p id="larissa-desc">
+Toujours prête à vous accompagner dans vos choix élégants :
+sacs, vêtements, soins, accessoires et restauration photo.
+</p>
+
+</div>
+
+</section>
+
+<!-- MUSIQUE -->
+
+<section class="music-player">
+
+<audio id="music" loop>
+<source src="musique1/collection afro-beat dance haute qualité.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="toggleMusic()" id="music-btn">
+▶ Activer la musique
+</button>
+
+</section>
+
+<!-- SACS -->
+
+<section id="sacs">
+
+<h2 class="section-title" id="title-sacs">Sacs</h2>
+
+<div class="gallery">
+
+<img src="Images_Boutique/Sacs/Sac_1.jpeg">
+<img src="Images_Boutique/Sacs/Sac_2.jpeg">
+<img src="Images_Boutique/Sacs/Sac_3.jpeg">
+<img src="Images_Boutique/Sacs/Sac_4.jpeg">
+<img src="Images_Boutique/Sacs/Sac_5.jpeg">
+<img src="Images_Boutique/Sacs/Sac_6.jpeg">
+<img src="Images_Boutique/Sacs/Sac_7.jpeg">
+<img src="Images_Boutique/Sacs/Sac_8.jpeg">
+<img src="Images_Boutique/Sacs/Sac_9.jpeg">
+<img src="Images_Boutique/Sacs/Sac_10.jpeg">
+
+</div>
+
+</section>
+
+<!-- SANDALES -->
+
+<section id="sandales">
+
+<h2 class="section-title" id="title-sandales">Sandales</h2>
+
+<div class="gallery">
+
+<img src="Images_Boutique/Sandales/Sandale_1.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_2.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_3.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_4.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_5.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_6.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_7.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_8.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_9.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_10.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_11.jpeg">
+<img src="Images_Boutique/Sandales/Sandale_12.jpeg">
+
+</div>
+
+</section>
+
+<!-- VETEMENTS -->
+
+<section id="vetements">
+
+<h2 class="section-title" id="title-vetements">Vêtements</h2>
+
+<div class="gallery">
+
+<img src="Images_Boutique/Vetement/Vetement_1.jpeg">
+<img src="Images_Boutique/Vetement/Vetement_2.jpeg">
+<img src="Images_Boutique/Vetement/Vetement_3.jpeg">
+
+</div>
+
+</section>
+
+<!-- PAGNE -->
+
+<section id="pagne">
+
+<h2 class="section-title" id="title-pagne">Pagne</h2>
+
+<div class="gallery">
+
+<img src="Images_Boutique/Pagne/Pagne_1.jpeg">
+
+</div>
+
+</section>
+
+<!-- SOINS -->
+
+<section id="soins">
+
+<h2 class="section-title" id="title-soins">Soins</h2>
+
+<div class="gallery">
+
+<img src="Images_Boutique/Soins/Soins_1.jpeg">
+<img src="Images_Boutique/Soins/Soins_2.jpeg">
+<img src="Images_Boutique/Soins/Soins_3.jpeg">
+
+</div>
+
+</section>
+
+<!-- RESTAURATION PHOTO -->
+
+<section class="pub-section" id="restauration">
+
+<div class="pub-card">
+
+<img src="Images_Boutique/Publicite/Affiche_Restauration_Photo.png">
+
+<div class="pub-text">
+
+<h2 id="restore-title">
+Restauration de vieilles photos
+</h2>
+
+<p id="restore-text">
+Vous avez une vieille photo abîmée, déchirée,
+décolorée ou en noir et blanc ?
+Fashion Larissa propose désormais
+un service de restauration et amélioration photo.
+</p>
+
+<ul>
+<li>✔ Retouche professionnelle</li>
+<li>✔ Récupération de portraits anciens</li>
+<li>✔ Colorisation</li>
+<li>✔ Nettoyage des défauts</li>
+<li>✔ Reproduction numérique</li>
+</ul>
+
+<div class="contact-box">
+
+📞 WhatsApp / Téléphone : <br>
+<strong>+229 01 66 01 87 13</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer id="footer-text">
+© Fashion Larissa – Boutique & Services Premium
+</footer>
+
+<!-- ZOOM -->
+
+<div class="zoom-container" id="zoomBox">
+
+<span class="close-btn" onclick="closeZoom()">
+✖
+</span>
+
+<img id="zoomImage">
+
+</div>
+
+<!-- SCRIPT -->
+
+<script>
+
+/* ========================= */
+/* ZOOM IMAGE */
+/* ========================= */
+
+document.querySelectorAll('.gallery img').forEach(img=>{
+
+img.addEventListener('click',function(){
+
+document.getElementById('zoomImage').src=this.src;
+document.getElementById('zoomBox').style.display='flex';
+
+});
+
+});
+
+function closeZoom(){
+
+document.getElementById('zoomBox').style.display='none';
+
+}
+
+/* ========================= */
+/* MUSIQUE */
+/* ========================= */
+
+const music=document.getElementById('music');
+const musicBtn=document.getElementById('music-btn');
+
+let playing=false;
+
+function toggleMusic(){
+
+if(!playing){
+
+music.play();
+musicBtn.innerHTML='⏸ Couper la musique';
+playing=true;
+
+}else{
+
+music.pause();
+musicBtn.innerHTML='▶ Activer la musique';
+playing=false;
+
+}
+
+}
+
+/* ========================= */
+/* TRADUCTIONS */
+/* ========================= */
+
+const translations={
+
+fr:{
+"menu-sacs":"Sacs",
+"menu-sandales":"Sandales",
+"menu-vetements":"Vêtements",
+"menu-pagne":"Pagne",
+"menu-soins":"Soins",
+"menu-restauration":"Restauration Photo",
+"hero-title":"Élégance • Mode • Beauté • Style",
+"hero-text":"Découvrez l’univers Fashion Larissa : sacs, sandales, vêtements, soins, pagnes et restauration professionnelle de vieilles photos.",
+"larissa-name":"Larissa – Conseillère Mode",
+"larissa-desc":"Toujours prête à vous accompagner dans vos choix élégants : sacs, vêtements, soins, accessoires et restauration photo.",
+"title-sacs":"Sacs",
+"title-sandales":"Sandales",
+"title-vetements":"Vêtements",
+"title-pagne":"Pagne",
+"title-soins":"Soins",
+"restore-title":"Restauration de vieilles photos",
+"restore-text":"Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ? Fashion Larissa propose désormais un service de restauration et amélioration photo.",
+"footer-text":"© Fashion Larissa – Boutique & Services Premium"
+},
+
+en:{
+"menu-sacs":"Bags",
+"menu-sandales":"Sandals",
+"menu-vetements":"Clothes",
+"menu-pagne":"Fabric",
+"menu-soins":"Beauty",
+"menu-restauration":"Photo Restoration",
+"hero-title":"Elegance • Fashion • Beauty • Style",
+"hero-text":"Discover the Fashion Larissa universe: bags, sandals, clothes, beauty care, fabrics and professional restoration of old photos.",
+"larissa-name":"Larissa – Fashion Advisor",
+"larissa-desc":"Always ready to help you choose elegant fashion accessories and photo restoration services.",
+"title-sacs":"Bags",
+"title-sandales":"Sandals",
+"title-vetements":"Clothes",
+"title-pagne":"Fabric",
+"title-soins":"Beauty",
+"restore-title":"Old Photo Restoration",
+"restore-text":"Do you have an old damaged, torn or faded picture? Fashion Larissa now offers professional restoration services.",
+"footer-text":"© Fashion Larissa – Premium Boutique & Services"
+},
+
+es:{
+"menu-sacs":"Bolsos",
+"menu-sandales":"Sandalias",
+"menu-vetements":"Ropa",
+"menu-pagne":"Tela",
+"menu-soins":"Belleza",
+"menu-restauration":"Restauración",
+"hero-title":"Elegancia • Moda • Belleza • Estilo",
+"hero-text":"Descubra el universo Fashion Larissa: bolsos, sandalias, ropa, belleza y restauración profesional de fotografías antiguas.",
+"larissa-name":"Larissa – Consejera de Moda",
+"larissa-desc":"Siempre lista para ayudarle en sus elecciones elegantes y restauración fotográfica.",
+"title-sacs":"Bolsos",
+"title-sandales":"Sandalias",
+"title-vetements":"Ropa",
+"title-pagne":"Tela",
+"title-soins":"Belleza",
+"restore-title":"Restauración de fotos antiguas",
+"restore-text":"¿Tiene una foto vieja dañada o descolorida? Fashion Larissa ofrece ahora restauración profesional.",
+"footer-text":"© Fashion Larissa – Boutique y Servicios Premium"
+}
+
+};
+
+function setLanguage(lang){
+
+const t=translations[lang];
+
+for(const id in t){
+
+const el=document.getElementById(id);
+
+if(el){
+
+el.textContent=t[id];
+
+}
+
+}
+
+}
+
+</script>
+
 </body>
 </html>
