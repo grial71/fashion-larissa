@@ -6,32 +6,17 @@
 
 <title>Fashion Larissa – Boutique</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
     font-family:'Poppins',sans-serif;
     background:#050505;
     color:white;
     overflow-x:hidden;
 }
-
-/* ========================= */
-/* FOND ANIMÉ */
-/* ========================= */
-
 body::before{
     content:"";
     position:fixed;
@@ -43,7 +28,6 @@ body::before{
     #050505;
     z-index:-3;
 }
-
 .stars{
     position:fixed;
     width:100%;
@@ -53,18 +37,11 @@ body::before{
     animation:moveStars 80s linear infinite;
     z-index:-2;
 }
-
 @keyframes moveStars{
-    from{background-position:0 0;}
-    to{background-position:2000px 2000px;}
+    from{background-position:0 0}
+    to{background-position:2000px 2000px}
 }
-
-/* ========================= */
-/* HEADER */
-/* ========================= */
-
 header{
-    position:relative;
     padding:40px 20px;
     text-align:center;
     background:linear-gradient(90deg,#ff008c,#ff4db8,#ffd700);
@@ -72,13 +49,11 @@ header{
     animation:gradientMove 8s ease infinite;
     box-shadow:0 5px 30px rgba(255,0,128,0.5);
 }
-
 @keyframes gradientMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
-
 header h1{
     font-family:'Cinzel',serif;
     font-size:70px;
@@ -86,11 +61,6 @@ header h1{
     color:white;
     text-shadow:0 0 15px gold;
 }
-
-/* ========================= */
-/* MENU */
-/* ========================= */
-
 nav{
     position:sticky;
     top:0;
@@ -102,25 +72,13 @@ nav{
     justify-content:center;
     flex-wrap:wrap;
     gap:20px;
-    border-bottom:1px solid rgba(255,255,255,0.1);
 }
-
 nav a{
     color:#ffd700;
     text-decoration:none;
     font-weight:bold;
-    transition:0.3s;
 }
-
-nav a:hover{
-    color:#ff4db8;
-    transform:scale(1.1);
-}
-
-/* ========================= */
-/* LANGUES */
-/* ========================= */
-
+nav a:hover{color:#ff4db8}
 .lang-switch{
     position:fixed;
     top:20px;
@@ -129,7 +87,6 @@ nav a:hover{
     display:flex;
     gap:10px;
 }
-
 .lang-switch button{
     background:black;
     color:#ffd700;
@@ -138,30 +95,16 @@ nav a:hover{
     border-radius:30px;
     cursor:pointer;
     font-weight:bold;
-    transition:0.3s;
 }
-
-.lang-switch button:hover{
-    background:#ffd700;
-    color:black;
-}
-
-/* ========================= */
-/* HERO */
-/* ========================= */
-
 .hero{
     text-align:center;
     padding:80px 20px 50px;
 }
-
 .hero h2{
     font-size:45px;
     color:#ffd700;
     margin-bottom:20px;
-    text-shadow:0 0 15px rgba(255,215,0,0.8);
 }
-
 .hero p{
     max-width:850px;
     margin:auto;
@@ -169,7 +112,6 @@ nav a:hover{
     color:#ddd;
     font-size:18px;
 }
-
 .hero-btn{
     margin-top:30px;
     display:inline-block;
@@ -179,24 +121,12 @@ nav a:hover{
     text-decoration:none;
     color:white;
     font-weight:bold;
-    box-shadow:0 0 25px rgba(255,0,140,0.5);
-    transition:0.3s;
 }
-
-.hero-btn:hover{
-    transform:scale(1.08);
-}
-
-/* ========================= */
-/* CARD LARISSA */
-/* ========================= */
-
 .larissa-section{
     display:flex;
     justify-content:center;
     padding:40px 20px;
 }
-
 .larissa-card{
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.2);
@@ -206,14 +136,7 @@ nav a:hover{
     max-width:420px;
     text-align:center;
     box-shadow:0 0 35px rgba(255,215,0,0.2);
-    transition:0.4s;
 }
-
-.larissa-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 45px rgba(255,0,128,0.4);
-}
-
 .larissa-photo{
     width:220px;
     height:220px;
@@ -222,42 +145,28 @@ nav a:hover{
     border:5px solid #ffd700;
     box-shadow:0 0 30px gold;
 }
-
 .larissa-card h3{
     margin-top:20px;
     color:#ffd700;
     font-size:28px;
 }
-
 .larissa-card p{
     margin-top:15px;
     color:#eee;
     line-height:1.7;
 }
-
-/* ========================= */
-/* TITRES */
-/* ========================= */
-
 .section-title{
     text-align:center;
     font-size:45px;
     margin-top:80px;
     color:#ffd700;
-    text-shadow:0 0 15px rgba(255,215,0,0.6);
 }
-
-/* ========================= */
-/* GALERIES */
-/* ========================= */
-
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
     gap:25px;
     padding:40px;
 }
-
 .gallery img{
     width:180px;
     height:180px;
@@ -266,23 +175,13 @@ nav a:hover{
     margin:auto;
     cursor:pointer;
     transition:0.4s;
-    border:2px solid rgba(255,255,255,0.1);
     box-shadow:0 0 15px rgba(255,215,0,0.2);
 }
-
 .gallery img:hover{
     transform:scale(1.12);
     box-shadow:0 0 25px rgba(255,0,140,0.7);
 }
-
-/* ========================= */
-/* PUB RESTAURATION PHOTO */
-/* ========================= */
-
-.pub-section{
-    padding:70px 20px;
-}
-
+.pub-section{padding:70px 20px}
 .pub-card{
     max-width:1200px;
     margin:auto;
@@ -294,38 +193,29 @@ nav a:hover{
     flex-wrap:wrap;
     align-items:center;
     backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
 }
-
 .pub-card img{
     width:400px;
     max-width:100%;
     border-radius:20px;
     box-shadow:0 0 25px rgba(255,215,0,0.3);
 }
-
-.pub-text{
-    flex:1;
-}
-
+.pub-text{flex:1}
 .pub-text h2{
     font-size:45px;
     color:#ffd700;
     margin-bottom:20px;
 }
-
 .pub-text p{
     line-height:1.9;
     color:#eee;
     margin-bottom:20px;
 }
-
 .pub-text ul{
     line-height:2;
     color:#ffd700;
     font-weight:600;
 }
-
 .contact-box{
     margin-top:25px;
     padding:18px;
@@ -333,32 +223,6 @@ nav a:hover{
     background:rgba(255,215,0,0.12);
     border:1px solid rgba(255,215,0,0.3);
 }
-
-/* ========================= */
-/* AUDIO */
-/* ========================= */
-
-.music-player{
-    text-align:center;
-    padding:50px 20px;
-}
-
-.music-player button{
-    background:linear-gradient(90deg,#ff008c,#ffd700);
-    border:none;
-    color:white;
-    padding:15px 30px;
-    border-radius:40px;
-    font-size:18px;
-    cursor:pointer;
-    font-weight:bold;
-    box-shadow:0 0 20px rgba(255,0,128,0.5);
-}
-
-/* ========================= */
-/* ZOOM */
-/* ========================= */
-
 .zoom-container{
     position:fixed;
     top:0;
@@ -371,13 +235,11 @@ nav a:hover{
     align-items:center;
     z-index:5000;
 }
-
 .zoom-container img{
     max-width:90%;
     max-height:90%;
     border-radius:20px;
 }
-
 .close-btn{
     position:absolute;
     top:20px;
@@ -389,11 +251,6 @@ nav a:hover{
     cursor:pointer;
     font-weight:bold;
 }
-
-/* ========================= */
-/* FOOTER */
-/* ========================= */
-
 footer{
     margin-top:80px;
     text-align:center;
@@ -402,35 +259,87 @@ footer{
     color:#999;
 }
 
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
+/* ✅ BOUTONS FLOTTANTS */
+.whatsapp-float{
+    position:fixed;
+    right:20px;
+    bottom:25px;
+    z-index:3000;
+    background:#25D366;
+    color:white;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:30px;
+    box-shadow:0 0 25px rgba(37,211,102,0.8);
+}
+.music-panel{
+    position:fixed;
+    left:20px;
+    bottom:25px;
+    z-index:3000;
+    background:rgba(0,0,0,0.85);
+    border:1px solid rgba(255,215,0,0.5);
+    border-radius:18px;
+    padding:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 0 25px rgba(255,215,0,0.3);
+}
+.music-panel button{
+    background:linear-gradient(90deg,#ff008c,#ffd700);
+    border:none;
+    color:white;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+}
+.music-panel input{
+    width:100px;
+    accent-color:#ffd700;
+}
+.music-label{
+    color:#ffd700;
+    font-size:12px;
+    font-weight:bold;
+}
 
 @media(max-width:768px){
-
-header h1{
-    font-size:40px;
+    header h1{font-size:38px;letter-spacing:3px}
+    .section-title{font-size:32px}
+    .hero h2{font-size:30px}
+    .pub-text h2{font-size:32px}
+    .gallery img{width:150px;height:150px}
+    .lang-switch{
+        top:10px;
+        right:10px;
+        gap:5px;
+    }
+    .lang-switch button{
+        padding:7px 10px;
+        font-size:12px;
+    }
+    .music-panel{
+        left:10px;
+        bottom:15px;
+        padding:9px;
+    }
+    .music-panel input{width:80px}
+    .whatsapp-float{
+        right:12px;
+        bottom:15px;
+        width:58px;
+        height:58px;
+    }
 }
-
-.section-title{
-    font-size:32px;
-}
-
-.hero h2{
-    font-size:30px;
-}
-
-.pub-text h2{
-    font-size:32px;
-}
-
-.gallery img{
-    width:150px;
-    height:150px;
-}
-
-}
-
 </style>
 </head>
 
@@ -438,21 +347,15 @@ header h1{
 
 <div class="stars"></div>
 
-<!-- LANGUES -->
-
 <div class="lang-switch">
     <button onclick="setLanguage('fr')">FR</button>
     <button onclick="setLanguage('en')">EN</button>
     <button onclick="setLanguage('es')">ES</button>
 </div>
 
-<!-- HEADER -->
-
 <header>
-    <h1 id="main-title">FASHION LARISSA</h1>
+    <h1>FASHION LARISSA</h1>
 </header>
-
-<!-- MENU -->
 
 <nav>
     <a id="menu-sacs" href="#sacs">Sacs</a>
@@ -463,73 +366,29 @@ header h1{
     <a id="menu-restauration" href="#restauration">Restauration Photo</a>
 </nav>
 
-<!-- HERO -->
-
 <section class="hero">
-
-    <h2 id="hero-title">
-        Élégance • Mode • Beauté • Style
-    </h2>
-
+    <h2 id="hero-title">Élégance • Mode • Beauté • Style</h2>
     <p id="hero-text">
-        Découvrez l’univers Fashion Larissa :
-        sacs, sandales, vêtements, soins, pagnes
-        et désormais restauration professionnelle
-        de vieilles photos.
+        Découvrez l’univers Fashion Larissa : sacs, sandales, vêtements, soins,
+        pagnes et restauration professionnelle de vieilles photos.
     </p>
-
-    <a class="hero-btn"
-       href="https://wa.me/2290166018713"
-       target="_blank">
-       WhatsApp Larissa
-    </a>
-
+    <a class="hero-btn" href="https://wa.me/2290166018713" target="_blank">WhatsApp Larissa</a>
 </section>
-
-<!-- LARISSA -->
 
 <section class="larissa-section">
-
-<div class="larissa-card">
-
-<img src="Images_Boutique/Larissa/Larissa.jpeg"
-class="larissa-photo">
-
-<h3 id="larissa-name">
-Larissa – Conseillère Mode
-</h3>
-
-<p id="larissa-desc">
-Toujours prête à vous accompagner dans vos choix élégants :
-sacs, vêtements, soins, accessoires et restauration photo.
-</p>
-
-</div>
-
+    <div class="larissa-card">
+        <img src="Images_Boutique/Larissa/Larissa.jpeg" class="larissa-photo">
+        <h3 id="larissa-name">Larissa – Conseillère Mode</h3>
+        <p id="larissa-desc">
+            Toujours prête à vous accompagner dans vos choix élégants :
+            sacs, vêtements, soins, accessoires et restauration photo.
+        </p>
+    </div>
 </section>
-
-<!-- MUSIQUE -->
-
-<section class="music-player">
-
-<audio id="music" loop>
-<source src="musique1/collection afro-beat dance haute qualité.mp3" type="audio/mpeg">
-</audio>
-
-<button onclick="toggleMusic()" id="music-btn">
-▶ Activer la musique
-</button>
-
-</section>
-
-<!-- SACS -->
 
 <section id="sacs">
-
 <h2 class="section-title" id="title-sacs">Sacs</h2>
-
 <div class="gallery">
-
 <img src="Images_Boutique/Sacs/Sac_1.jpeg">
 <img src="Images_Boutique/Sacs/Sac_2.jpeg">
 <img src="Images_Boutique/Sacs/Sac_3.jpeg">
@@ -540,19 +399,12 @@ sacs, vêtements, soins, accessoires et restauration photo.
 <img src="Images_Boutique/Sacs/Sac_8.jpeg">
 <img src="Images_Boutique/Sacs/Sac_9.jpeg">
 <img src="Images_Boutique/Sacs/Sac_10.jpeg">
-
 </div>
-
 </section>
 
-<!-- SANDALES -->
-
 <section id="sandales">
-
 <h2 class="section-title" id="title-sandales">Sandales</h2>
-
 <div class="gallery">
-
 <img src="Images_Boutique/Sandales/Sandale_1.jpeg">
 <img src="Images_Boutique/Sandales/Sandale_2.jpeg">
 <img src="Images_Boutique/Sandales/Sandale_3.jpeg">
@@ -565,78 +417,43 @@ sacs, vêtements, soins, accessoires et restauration photo.
 <img src="Images_Boutique/Sandales/Sandale_10.jpeg">
 <img src="Images_Boutique/Sandales/Sandale_11.jpeg">
 <img src="Images_Boutique/Sandales/Sandale_12.jpeg">
-
 </div>
-
 </section>
 
-<!-- VETEMENTS -->
-
 <section id="vetements">
-
 <h2 class="section-title" id="title-vetements">Vêtements</h2>
-
 <div class="gallery">
-
 <img src="Images_Boutique/Vetement/Vetement_1.jpeg">
 <img src="Images_Boutique/Vetement/Vetement_2.jpeg">
 <img src="Images_Boutique/Vetement/Vetement_3.jpeg">
-
 </div>
-
 </section>
-
-<!-- PAGNE -->
 
 <section id="pagne">
-
 <h2 class="section-title" id="title-pagne">Pagne</h2>
-
 <div class="gallery">
-
 <img src="Images_Boutique/Pagne/Pagne_1.jpeg">
-
 </div>
-
 </section>
 
-<!-- SOINS -->
-
 <section id="soins">
-
 <h2 class="section-title" id="title-soins">Soins</h2>
-
 <div class="gallery">
-
 <img src="Images_Boutique/Soins/Soins_1.jpeg">
 <img src="Images_Boutique/Soins/Soins_2.jpeg">
 <img src="Images_Boutique/Soins/Soins_3.jpeg">
-
 </div>
-
 </section>
 
-<!-- RESTAURATION PHOTO -->
-
 <section class="pub-section" id="restauration">
-
 <div class="pub-card">
-
 <img src="Images_Boutique/Publicite/Affiche_Restauration_Photo.png">
-
 <div class="pub-text">
-
-<h2 id="restore-title">
-Restauration de vieilles photos
-</h2>
-
+<h2 id="restore-title">Restauration de vieilles photos</h2>
 <p id="restore-text">
-Vous avez une vieille photo abîmée, déchirée,
-décolorée ou en noir et blanc ?
-Fashion Larissa propose désormais
-un service de restauration et amélioration photo.
+Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ?
+Fashion Larissa propose désormais un service de restauration et amélioration photo.
 </p>
-
 <ul>
 <li>✔ Retouche professionnelle</li>
 <li>✔ Récupération de portraits anciens</li>
@@ -644,96 +461,77 @@ un service de restauration et amélioration photo.
 <li>✔ Nettoyage des défauts</li>
 <li>✔ Reproduction numérique</li>
 </ul>
-
 <div class="contact-box">
-
 📞 WhatsApp / Téléphone : <br>
 <strong>+229 01 66 01 87 13</strong>
-
 </div>
-
 </div>
-
 </div>
-
 </section>
-
-<!-- FOOTER -->
 
 <footer id="footer-text">
 © Fashion Larissa – Boutique & Services Premium
 </footer>
 
-<!-- ZOOM -->
-
 <div class="zoom-container" id="zoomBox">
-
-<span class="close-btn" onclick="closeZoom()">
-✖
-</span>
-
+<span class="close-btn" onclick="closeZoom()">✖</span>
 <img id="zoomImage">
-
 </div>
 
-<!-- SCRIPT -->
+<!-- ✅ MUSIQUE FLOTTANTE -->
+<audio id="music" loop>
+    <source src="musique1/collection afro-beat dance haute qualité.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-panel">
+    <button onclick="toggleMusic()" id="music-btn">▶</button>
+    <div>
+        <div class="music-label">Musique</div>
+        <input type="range" id="volume-control" min="0" max="100" value="60">
+    </div>
+</div>
+
+<!-- ✅ WHATSAPP FLOTTANT -->
+<a class="whatsapp-float" href="https://wa.me/2290166018713" target="_blank">💬</a>
 
 <script>
-
-/* ========================= */
-/* ZOOM IMAGE */
-/* ========================= */
-
 document.querySelectorAll('.gallery img').forEach(img=>{
-
-img.addEventListener('click',function(){
-
-document.getElementById('zoomImage').src=this.src;
-document.getElementById('zoomBox').style.display='flex';
-
-});
-
+    img.addEventListener('click',function(){
+        document.getElementById('zoomImage').src=this.src;
+        document.getElementById('zoomBox').style.display='flex';
+    });
 });
 
 function closeZoom(){
-
-document.getElementById('zoomBox').style.display='none';
-
+    document.getElementById('zoomBox').style.display='none';
 }
 
-/* ========================= */
 /* MUSIQUE */
-/* ========================= */
-
 const music=document.getElementById('music');
 const musicBtn=document.getElementById('music-btn');
-
+const volumeControl=document.getElementById('volume-control');
 let playing=false;
 
+music.volume=0.6;
+
 function toggleMusic(){
-
-if(!playing){
-
-music.play();
-musicBtn.innerHTML='⏸ Couper la musique';
-playing=true;
-
-}else{
-
-music.pause();
-musicBtn.innerHTML='▶ Activer la musique';
-playing=false;
-
+    if(!playing){
+        music.play();
+        musicBtn.innerHTML='⏸';
+        playing=true;
+    }else{
+        music.pause();
+        musicBtn.innerHTML='▶';
+        playing=false;
+    }
 }
 
-}
+volumeControl.addEventListener('input',function(){
+    music.volume=this.value/100;
+});
 
-/* ========================= */
 /* TRADUCTIONS */
-/* ========================= */
-
 const translations={
-
 fr:{
 "menu-sacs":"Sacs",
 "menu-sandales":"Sandales",
@@ -754,7 +552,6 @@ fr:{
 "restore-text":"Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ? Fashion Larissa propose désormais un service de restauration et amélioration photo.",
 "footer-text":"© Fashion Larissa – Boutique & Services Premium"
 },
-
 en:{
 "menu-sacs":"Bags",
 "menu-sandales":"Sandals",
@@ -775,7 +572,6 @@ en:{
 "restore-text":"Do you have an old damaged, torn or faded picture? Fashion Larissa now offers professional restoration services.",
 "footer-text":"© Fashion Larissa – Premium Boutique & Services"
 },
-
 es:{
 "menu-sacs":"Bolsos",
 "menu-sandales":"Sandalias",
@@ -796,27 +592,15 @@ es:{
 "restore-text":"¿Tiene una foto vieja dañada o descolorida? Fashion Larissa ofrece ahora restauración profesional.",
 "footer-text":"© Fashion Larissa – Boutique y Servicios Premium"
 }
-
 };
 
 function setLanguage(lang){
-
-const t=translations[lang];
-
-for(const id in t){
-
-const el=document.getElementById(id);
-
-if(el){
-
-el.textContent=t[id];
-
+    const t=translations[lang];
+    for(const id in t){
+        const el=document.getElementById(id);
+        if(el){el.textContent=t[id];}
+    }
 }
-
-}
-
-}
-
 </script>
 
 </body>
