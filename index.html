@@ -1,506 +1,894 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fashion Larissa | Boutique & Restauration Photo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Larissa | Boutique & Restauration Photo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Polices Google Fonts Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --rose:#ff5fb0;
-  --rose2:#d3006c;
-  --roseLight:#fff0f7;
-  --gold:#d4af37;
-  --black:#13000a;
-  --white:#fff;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:Poppins,sans-serif;
-  background:#fffafc;
-  color:var(--black);
-  overflow-x:hidden;
-}
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle,rgba(255,215,0,.75) 1px,transparent 2px),
-    radial-gradient(circle,rgba(255,95,176,.25) 1px,transparent 3px);
-  background-size:70px 70px,130px 130px;
-  animation:stars 35s linear infinite;
-  z-index:-1;
-}
-@keyframes stars{
-  from{background-position:0 0,0 0}
-  to{background-position:1200px 1200px,-900px 900px}
-}
-header{
-  min-height:72vh;
-  background:linear-gradient(135deg,#ff7cb8,#d3006c,#1b0010);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:white;
-  position:relative;
-  overflow:hidden;
-}
-header::before{
-  content:"";
-  position:absolute;
-  width:800px;
-  height:800px;
-  background:radial-gradient(circle,rgba(255,255,255,.25),transparent 65%);
-  animation:halo 9s ease-in-out infinite;
-}
-@keyframes halo{
-  0%,100%{transform:translate(-180px,-120px)}
-  50%{transform:translate(160px,120px)}
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-  padding:30px;
-}
-.hero-content h1{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(3rem,11vw,7rem);
-  letter-spacing:7px;
-  text-transform:uppercase;
-  text-shadow:0 20px 45px rgba(0,0,0,.35);
-}
-.hero-content p{
-  margin-top:15px;
-  letter-spacing:5px;
-  text-transform:uppercase;
-  font-weight:300;
-}
-nav{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.88);
-  backdrop-filter:blur(18px);
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:12px;
-  padding:18px;
-  box-shadow:0 8px 30px rgba(0,0,0,.08);
-}
-nav a{
-  text-decoration:none;
-  color:var(--rose2);
-  font-weight:900;
-  padding:10px 18px;
-  border-radius:50px;
-  transition:.3s;
-}
-nav a:hover{
-  background:var(--roseLight);
-  transform:translateY(-3px);
-}
-.lang-switch{text-align:center;padding:15px}
-.lang-switch button{
-  border:0;
-  background:linear-gradient(135deg,var(--rose),var(--rose2));
-  color:white;
-  padding:10px 18px;
-  border-radius:30px;
-  font-weight:900;
-  cursor:pointer;
-  margin:5px;
-}
-.brand{
-  text-align:center;
-  padding:75px 20px 45px;
-}
-.brand img{
-  width:260px;
-  max-width:85%;
-  filter:drop-shadow(0 20px 35px rgba(0,0,0,.18));
-  animation:floatLogo 5s ease-in-out infinite;
-}
-@keyframes floatLogo{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-15px)}
-}
-.cta{
-  display:inline-block;
-  margin-top:25px;
-  background:linear-gradient(135deg,var(--rose2),#ff2f96);
-  color:white;
-  padding:15px 30px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:900;
-  box-shadow:0 15px 35px rgba(211,0,108,.35);
-}
-.larissa-section{
-  display:flex;
-  justify-content:center;
-  padding:45px 20px 80px;
-}
-.larissa-card{
-  max-width:760px;
-  text-align:center;
-  background:rgba(255,255,255,.95);
-  border:2px solid #ffc4df;
-  border-radius:38px;
-  padding:45px 30px;
-  box-shadow:0 30px 70px rgba(211,0,108,.18);
-}
-.larissa-card img{
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  object-fit:cover;
-  border:6px solid var(--rose);
-  box-shadow:0 0 25px var(--gold);
-}
-.larissa-card h2{
-  font-family:"Playfair Display",serif;
-  font-size:2.8rem;
-  color:var(--rose2);
-  margin-top:20px;
-}
-.larissa-card p{
-  max-width:620px;
-  margin:15px auto 0;
-  line-height:1.8;
-}
-.promo-photo{
-  padding:90px 7%;
-  background:linear-gradient(135deg,#fff,#fff0f7);
-}
-.promo-box{
-  max-width:1250px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:38px;
-  align-items:center;
-}
-.promo-text h2{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(2.5rem,6vw,4.2rem);
-  color:var(--rose2);
-  line-height:1.1;
-}
-.promo-text p{
-  margin-top:20px;
-  font-size:1.1rem;
-  line-height:1.8;
-}
-.promo-list{
-  margin-top:25px;
-  display:grid;
-  gap:12px;
-  font-weight:800;
-}
-.promo-img img{
-  width:100%;
-  border-radius:35px;
-  box-shadow:0 25px 75px rgba(0,0,0,.25);
-  border:6px solid white;
-}
-.section-title{
-  text-align:center;
-  padding:95px 20px 45px;
-}
-.section-title h2{
-  font-family:"Playfair Display",serif;
-  color:var(--rose2);
-  font-size:clamp(2.5rem,6vw,4rem);
-}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:32px;
-  padding:0 7% 35px;
-}
-.card{
-  background:white;
-  border-radius:26px;
-  padding:12px;
-  box-shadow:0 15px 35px rgba(0,0,0,.08);
-  cursor:pointer;
-  transition:.4s;
-  overflow:hidden;
-}
-.card:hover{
-  transform:translateY(-12px) scale(1.02);
-  box-shadow:0 25px 55px rgba(211,0,108,.22);
-}
-.card-img{
-  height:260px;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-}
-.card-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.8s;
-}
-.card:hover img{transform:scale(1.12)}
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(211,0,108,.62);
-  opacity:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-weight:900;
-  transition:.3s;
-}
-.card:hover .overlay{opacity:1}
-.card p{
-  text-align:center;
-  font-weight:900;
-  color:var(--rose2);
-  padding:15px 5px 5px;
-}
-.viewer{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.92);
-  z-index:5000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-}
-.viewer img{
-  max-width:92%;
-  max-height:82vh;
-  border-radius:18px;
-  border:5px solid white;
-}
-.close{
-  position:absolute;
-  top:25px;
-  right:30px;
-  color:white;
-  font-size:3rem;
-  cursor:pointer;
-}
-footer{
-  background:var(--black);
-  color:white;
-  padding:70px 8%;
-  margin-top:80px;
-}
-.footer-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:35px;
-}
-footer h3{color:var(--gold);margin-bottom:15px}
-.float-btn{
-  position:fixed;
-  right:22px;
-  bottom:25px;
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  color:white;
-  font-size:2rem;
-  z-index:3000;
-  background:#25D366;
-  box-shadow:0 15px 35px rgba(0,0,0,.35);
-}
-@media(max-width:800px){
-  .promo-box{grid-template-columns:1fr}
-  .hero-content h1{letter-spacing:3px}
-  .card-img{height:220px}
-}
-</style>
+    <style>
+        /* Variables de design globales */
+        :root {
+            --pink: #ff5fb0;
+            --darkpink: #d3006c;
+            --lightpink: #fff0f7;
+            --gold: #d4af37;
+            --black: #14000b;
+            --white: #ffffff;
+            --blur-bg: rgba(255, 255, 255, 0.75);
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 30px rgba(211, 0, 108, 0.12);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Reset & Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fffafc;
+            color: var(--black);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Arrière-plan moderne avec lueurs animées d'ambiance */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 95, 176, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            animation: ambientFloat 20s infinite alternate ease-in-out;
+        }
+
+        body::before {
+            top: -10%;
+            left: -10%;
+        }
+
+        body::after {
+            bottom: -10%;
+            right: -10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes ambientFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 5%) scale(1.1); }
+        }
+
+        /* En-tête (Header) Premium Haute Couture */
+        header {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            background: linear-gradient(135deg, #ff7cb8, #d3006c, #2b0017);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 60%);
+            animation: headerGlow 12s ease-in-out infinite;
+        }
+
+        @keyframes headerGlow {
+            0%, 100% { transform: translate(-20%, -20%) scale(1); }
+            50% { transform: translate(20%, 20%) scale(1.2); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+        }
+
+        .header-content p {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .header-content h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            line-height: 1.1;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 0.9; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Barre de navigation (Glassmorphism) */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 10px 20px;
+            border-radius: 40px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--darkpink);
+            background: var(--lightpink);
+            transform: translateY(-2px);
+        }
+
+        /* Sélecteur de langue */
+        .lang-switch {
+            text-align: center;
+            padding: 25px 20px 10px;
+        }
+
+        .lang-switch button {
+            border: 1px solid rgba(211, 0, 108, 0.2);
+            background: var(--white);
+            color: var(--darkpink);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 5px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .lang-switch button:hover {
+            background: linear-gradient(135deg, var(--pink), var(--darkpink));
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            border-color: transparent;
+        }
+
+        /* Section Marque & Logo */
+        .brand {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .brand img {
+            width: 240px;
+            max-width: 80%;
+            filter: drop-shadow(0 15px 30px rgba(211, 0, 108, 0.15));
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        /* Bouton d'action (CTA) avec reflet brillant moderne */
+        .cta {
+            display: inline-block;
+            margin-top: 30px;
+            background: linear-gradient(135deg, var(--darkpink), #ff2f96);
+            color: var(--white);
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 12px 30px rgba(211, 0, 108, 0.3);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.6s;
+        }
+
+        .cta:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(211, 0, 108, 0.45);
+        }
+
+        .cta:hover::before {
+            left: 100%;
+        }
+
+        /* Section Profil Larissa */
+        .larissa-section {
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px 60px;
+        }
+
+        .larissa-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding: 50px 40px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 196, 223, 0.5);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .larissa-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 70px rgba(211, 0, 108, 0.15);
+        }
+
+        .larissa-photo {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--white);
+            box-shadow: 0 10px 30px rgba(211, 0, 108, 0.2), 0 0 0 3px var(--pink);
+            transition: var(--transition);
+        }
+
+        .larissa-card:hover .larissa-photo {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .larissa-card h2 {
+            color: var(--darkpink);
+            font-family: "Playfair Display", serif;
+            font-size: 2.8rem;
+            margin-top: 25px;
+            font-weight: 700;
+        }
+
+        .larissa-card p {
+            max-width: 650px;
+            margin: 20px auto 0;
+            line-height: 1.8;
+            color: #4a3e43;
+            font-size: 1.05rem;
+        }
+
+        /* Section Restauration Photo */
+        .promo-photo {
+            padding: 100px 8%;
+            background: linear-gradient(135deg, #ffffff, #fff3f8);
+            position: relative;
+        }
+
+        .promo-box {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .promo-text h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            color: var(--darkpink);
+            line-height: 1.2;
+        }
+
+        .promo-text p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #55454c;
+        }
+
+        .promo-list {
+            margin: 30px 0;
+            display: grid;
+            gap: 15px;
+        }
+
+        .promo-list span {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--black);
+            background: var(--white);
+            padding: 12px 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--pink);
+        }
+
+        .promo-img {
+            position: relative;
+        }
+
+        .promo-img img {
+            width: 100%;
+            border-radius: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 6px solid var(--white);
+            transition: var(--transition);
+        }
+
+        .promo-img:hover img {
+            transform: scale(1.02) rotate(-1deg);
+        }
+
+        /* Titres des sections produits */
+        .section-title {
+            text-align: center;
+            padding: 100px 20px 40px;
+        }
+
+        .section-title h2 {
+            font-family: "Playfair Display", serif;
+            color: var(--darkpink);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--pink), transparent);
+        }
+
+        /* Grille de Produits Moderne */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+            padding: 20px 8% 40px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 15px;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            overflow: hidden;
+            border: 1px solid rgba(211, 0, 108, 0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(211, 0, 108, 0.18);
+        }
+
+        .card-img {
+            height: 300px;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            background: #f7f7f7;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        /* Overlay d'affichage moderne */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(211, 0, 108, 0.4);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .card:hover .overlay {
+            opacity: 1;
+        }
+
+        .card p {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--darkpink);
+            padding: 20px 10px 10px;
+        }
+
+        /* Section FAQ interactive */
+        .faq {
+            max-width: 850px;
+            margin: 100px auto;
+            padding: 0 25px;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-family: "Playfair Display", serif;
+            color: var(--darkpink);
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin: 16px 0;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            border: 1px solid rgba(211, 0, 108, 0.05);
+            transition: var(--transition);
+        }
+
+        .faq-q {
+            padding: 22px 30px;
+            font-weight: 700;
+            color: var(--black);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-q:hover {
+            color: var(--darkpink);
+            background: var(--lightpink);
+        }
+
+        .faq-q::after {
+            content: '+';
+            font-size: 1.4rem;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-q::after {
+            transform: rotate(45deg);
+            color: var(--darkpink);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+            padding: 0 30px;
+            color: #66555d;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-a {
+            padding: 0 30px 25px;
+        }
+
+        /* Pied de page (Footer) */
+        footer {
+            background: var(--black);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 80px 8%;
+            margin-top: 100px;
+            border-top: 3px solid var(--pink);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+        }
+
+        footer h3 {
+            color: var(--gold);
+            font-family: "Playfair Display", serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        footer p {
+            margin: 12px 0;
+            line-height: 1.7;
+        }
+
+        /* Visionneuse d'image Premium (Lightbox) */
+        .viewer {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 0, 11, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .viewer.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .viewer img {
+            max-width: 95%;
+            max-height: 85vh;
+            border-radius: 24px;
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .viewer.show img {
+            transform: scale(1);
+        }
+
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--white);
+            font-size: 3.5rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close:hover {
+            transform: rotate(90deg) scale(1.1);
+            color: var(--pink);
+        }
+
+        /* Bouton flottant WhatsApp avec effet de vagues pulsées */
+        .float-btn {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--white);
+            font-size: 2.2rem;
+            z-index: 3000;
+            background: #25D366;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+        }
+
+        .float-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: #25D366;
+            z-index: -1;
+            animation: pulseWave 2s infinite;
+        }
+
+        @keyframes pulseWave {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        .float-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Adaptabilité Mobile (Responsive) */
+        @media(max-width: 900px) {
+            .promo-box { grid-template-columns: 1fr; gap: 40px; }
+            header { min-height: 50vh; }
+            .card-img { height: 250px; }
+            .products { padding: 20px 4% 40px; }
+            .larissa-card { padding: 35px 20px; }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-  <div class="hero-content">
-    <p id="subtitle">L’élégance à votre portée</p>
-    <h1>Fashion Larissa</h1>
-  </div>
+    <div class="header-content">
+        <p id="subtitle">L’élégance à votre portée</p>
+        <h1>Fashion Larissa</h1>
+    </div>
 </header>
 
 <nav>
-  <a id="nav-bags" href="#sacs">Sacs</a>
-  <a id="nav-sandals" href="#sandales">Sandales</a>
-  <a id="nav-clothes" href="#vetements">Vêtements</a>
-  <a id="nav-care" href="#soins">Soins</a>
-  <a id="nav-fabric" href="#pagne">Pagne</a>
-  <a id="nav-photo" href="#restauration">Restauration photo</a>
+    <a id="nav-bags" href="#sacs">Sacs</a>
+    <a id="nav-sandals" href="#sandales">Sandales</a>
+    <a id="nav-clothes" href="#vetements">Vêtements</a>
+    <a id="nav-care" href="#soins">Soins</a>
+    <a id="nav-fabric" href="#pagne">Pagne</a>
+    <a id="nav-photo" href="#restauration">Restauration photo</a>
 </nav>
 
 <div class="lang-switch">
-  <button onclick="setLanguage('fr')">🇫🇷 Français</button>
-  <button onclick="setLanguage('en')">🇬🇧 English</button>
+    <button onclick="setLanguage('fr')">🇫🇷 Français</button>
+    <button onclick="setLanguage('en')">🇬🇧 English</button>
 </div>
 
 <section class="brand">
-  <img src="Logo_Boutique.png" alt="Logo Fashion Larissa">
-  <br>
-  <a id="main-cta" class="cta" href="https://wa.me/2290166018713" target="_blank">💬 Commander sur WhatsApp</a>
+    <img src="Logo_Boutique.png" alt="Logo Fashion Larissa">
+    <br>
+    <a id="main-cta" class="cta" href="https://wa.me/22966018713" target="_blank">💬 Commander sur WhatsApp</a>
 </section>
 
 <section class="larissa-section">
-  <div class="larissa-card">
-    <img src="Images_Boutique/Larissa/Larissa.jpeg" alt="Larissa">
-    <h2>Larissa</h2>
-    <p id="larissa-bio">Larissa propose une sélection d’articles de mode, sacs, sandales, pagnes, vêtements et soins. Une boutique locale avec une présence élégante, moderne et proche de ses clientes.</p>
-  </div>
+    <div class="larissa-card">
+        <img class="larissa-photo" src="Images_Boutique/Larissa/Larissa.jpeg" alt="Larissa">
+        <h2 id="larissa-name">Larissa</h2>
+        <p id="larissa-bio">Larissa propose une sélection d’articles de mode, sacs, sandales, pagnes, vêtements et soins. Une boutique locale avec une présence élégante, moderne et proche de ses clientes.</p>
+    </div>
 </section>
 
 <section id="restauration" class="promo-photo">
-  <div class="promo-box">
-    <div class="promo-text">
-      <h2 id="photo-title">Nouveau service : restauration de photos</h2>
-      <p id="photo-text">Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ? Fashion Larissa vous propose un service de récupération visuelle pour redonner vie à vos souvenirs.</p>
-      <div class="promo-list">
-        <span id="photo-p1">✨ Amélioration et retouche de vieilles photos</span>
-        <span id="photo-p2">🖼️ Reproduction en portrait propre</span>
-        <span id="photo-p3">🎁 Idéal pour offrir un souvenir à vos proches</span>
-        <span id="photo-p4">📞 Contact WhatsApp / Téléphone : +229 01 66 01 87 13</span>
-      </div>
-      <a class="cta" href="https://wa.me/2290166018713" target="_blank">💬 WhatsApp</a>
+    <div class="promo-box">
+        <div class="promo-text">
+            <h2 id="photo-title">Nouveau service : restauration de photos</h2>
+            <p id="photo-text">Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ? Fashion Larissa vous propose un service de récupération visuelle pour redonner vie à vos souvenirs.</p>
+            <div class="promo-list">
+                <span id="photo-p1">✨ Amélioration et retouche de vieilles photos</span>
+                <span id="photo-p2">🖼️ Reproduction en portrait propre</span>
+                <span id="photo-p3">🎁 Idéal pour offrir un souvenir à vos proches</span>
+                <span id="photo-p4">📞 Contact WhatsApp / Téléphone : +229 01 66 01 87 13</span>
+            </div>
+            <a class="cta" href="https://wa.me/2290166018713" target="_blank">💬 WhatsApp</a>
+        </div>
+        <div class="promo-img">
+            <img src="Images_Boutique/Publicite/Affiche_Restauration_Photo.png" alt="Publicité restauration photo">
+        </div>
     </div>
-    <div class="promo-img">
-      <img src="Images_Boutique/Publicite/Affiche_Restauration_Photo.png?v=2" alt="Publicité restauration photo">
-    </div>
-  </div>
 </section>
 
+<!-- SECTION SACS -->
 <div id="sacs" class="section-title"><h2 id="title-bags">Nos sacs</h2></div>
 <div class="products">
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_1.jpeg"><div class="overlay">Voir</div></div><p>Sac 1</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_2.jpeg"><div class="overlay">Voir</div></div><p>Sac 2</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_3.jpeg"><div class="overlay">Voir</div></div><p>Sac 3</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_4.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_4.jpeg"><div class="overlay">Voir</div></div><p>Sac 4</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_5.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_5.jpeg"><div class="overlay">Voir</div></div><p>Sac 5</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_6.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_6.jpeg"><div class="overlay">Voir</div></div><p>Sac 6</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_7.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_7.jpeg"><div class="overlay">Voir</div></div><p>Sac 7</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_8.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_8.jpeg"><div class="overlay">Voir</div></div><p>Sac 8</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_9.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_9.jpeg"><div class="overlay">Voir</div></div><p>Sac 9</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_10.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_10.jpeg"><div class="overlay">Voir</div></div><p>Sac 10</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_1.jpeg" alt="Sac 1"><div class="overlay">Voir</div></div><p>Sac 1</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_2.jpeg" alt="Sac 2"><div class="overlay">Voir</div></div><p>Sac 2</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_3.jpeg" alt="Sac 3"><div class="overlay">Voir</div></div><p>Sac 3</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_4.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_4.jpeg" alt="Sac 4"><div class="overlay">Voir</div></div><p>Sac 4</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_5.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_5.jpeg" alt="Sac 5"><div class="overlay">Voir</div></div><p>Sac 5</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_6.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_6.jpeg" alt="Sac 6"><div class="overlay">Voir</div></div><p>Sac 6</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_7.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_7.jpeg" alt="Sac 7"><div class="overlay">Voir</div></div><p>Sac 7</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_8.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_8.jpeg" alt="Sac 8"><div class="overlay">Voir</div></div><p>Sac 8</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_9.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_9.jpeg" alt="Sac 9"><div class="overlay">Voir</div></div><p>Sac 9</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_10.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_10.jpeg" alt="Sac 10"><div class="overlay">Voir</div></div><p>Sac 10</p></div>
 </div>
 
+<!-- SECTION SANDALES -->
 <div id="sandales" class="section-title"><h2 id="title-sandals">Sandales</h2></div>
 <div class="products">
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_1.jpeg"><div class="overlay">Voir</div></div><p>Sandale 1</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_2.jpeg"><div class="overlay">Voir</div></div><p>Sandale 2</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_3.jpeg"><div class="overlay">Voir</div></div><p>Sandale 3</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_4.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_4.jpeg"><div class="overlay">Voir</div></div><p>Sandale 4</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_5.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_5.jpeg"><div class="overlay">Voir</div></div><p>Sandale 5</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_6.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_6.jpeg"><div class="overlay">Voir</div></div><p>Sandale 6</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_7.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_7.jpeg"><div class="overlay">Voir</div></div><p>Sandale 7</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_8.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_8.jpeg"><div class="overlay">Voir</div></div><p>Sandale 8</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_9.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_9.jpeg"><div class="overlay">Voir</div></div><p>Sandale 9</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_10.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_10.jpeg"><div class="overlay">Voir</div></div><p>Sandale 10</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_11.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_11.jpeg"><div class="overlay">Voir</div></div><p>Sandale 11</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_12.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_12.jpeg"><div class="overlay">Voir</div></div><p>Sandale 12</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_1.jpeg" alt="Sandale 1"><div class="overlay">Voir</div></div><p>Sandale 1</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_2.jpeg" alt="Sandale 2"><div class="overlay">Voir</div></div><p>Sandale 2</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_3.jpeg" alt="Sandale 3"><div class="overlay">Voir</div></div><p>Sandale 3</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_4.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_4.jpeg" alt="Sandale 4"><div class="overlay">Voir</div></div><p>Sandale 4</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_5.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_5.jpeg" alt="Sandale 5"><div class="overlay">Voir</div></div><p>Sandale 5</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_6.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_6.jpeg" alt="Sandale 6"><div class="overlay">Voir</div></div><p>Sandale 6</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_7.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_7.jpeg" alt="Sandale 7"><div class="overlay">Voir</div></div><p>Sandale 7</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_8.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_8.jpeg" alt="Sandale 8"><div class="overlay">Voir</div></div><p>Sandale 8</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_9.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_9.jpeg" alt="Sandale 9"><div class="overlay">Voir</div></div><p>Sandale 9</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_10.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_10.jpeg" alt="Sandale 10"><div class="overlay">Voir</div></div><p>Sandale 10</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_11.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_11.jpeg" alt="Sandale 11"><div class="overlay">Voir</div></div><p>Sandale 11</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_12.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_12.jpeg" alt="Sandale 12"><div class="overlay">Voir</div></div><p>Sandale 12</p></div>
 </div>
 
+<!-- SECTION VÊTEMENTS -->
 <div id="vetements" class="section-title"><h2 id="title-clothes">Vêtements</h2></div>
 <div class="products">
-  <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_1.jpeg"><div class="overlay">Voir</div></div><p>Vêtement 1</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_2.jpeg"><div class="overlay">Voir</div></div><p>Vêtement 2</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_3.jpeg"><div class="overlay">Voir</div></div><p>Vêtement 3</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_1.jpeg" alt="Vêtement 1"><div class="overlay">Voir</div></div><p>Vêtement 1</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_2.jpeg" alt="Vêtement 2"><div class="overlay">Voir</div></div><p>Vêtement 2</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_3.jpeg" alt="Vêtement 3"><div class="overlay">Voir</div></div><p>Vêtement 3</p></div>
 </div>
 
+<!-- SECTION SOINS -->
 <div id="soins" class="section-title"><h2 id="title-care">Soins</h2></div>
 <div class="products">
-  <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_1.jpeg"><div class="overlay">Voir</div></div><p>Soin 1</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_2.jpeg"><div class="overlay">Voir</div></div><p>Soin 2</p></div>
-  <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_3.jpeg"><div class="overlay">Voir</div></div><p>Soin 3</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_1.jpeg" alt="Soin 1"><div class="overlay">Voir</div></div><p>Soin 1</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_2.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_2.jpeg" alt="Soin 2"><div class="overlay">Voir</div></div><p>Soin 2</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_3.jpeg" alt="Soin 3"><div class="overlay">Voir</div></div><p>Soin 3</p></div>
 </div>
 
+<!-- SECTION PAGNE -->
 <div id="pagne" class="section-title"><h2 id="title-fabric">Pagne & Tissus</h2></div>
 <div class="products">
-  <div class="card" onclick="openImg('Images_Boutique/Pagne/Pagne_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Pagne/Pagne_1.jpeg"><div class="overlay">Voir</div></div><p>Pagne 1</p></div>
+    <div class="card" onclick="openImg('Images_Boutique/Pagne/Pagne_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Pagne/Pagne_1.jpeg" alt="Pagne 1"><div class="overlay">Voir</div></div><p>Pagne 1</p></div>
 </div>
+
+<!-- SECTION FAQ INTERACTIVE -->
+<section class="faq">
+    <h2 id="faq-title">Infos utiles</h2>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" id="faq-q1">Comment commander ?</div>
+        <div class="faq-a" id="faq-a1">Contactez Larissa directement par WhatsApp ou téléphone pour vérifier la disponibilité de l’article.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)" id="faq-q2">Les prix sont-ils affichés ?</div>
+        <div class="faq-a" id="faq-a2">Les prix sont communiqués directement par WhatsApp selon l’article, la disponibilité et le format souhaité.</div>
+    </div>
+</section>
 
 <footer>
-  <div class="footer-grid">
-    <div>
-      <h3>Fashion Larissa</h3>
-      <p id="footer-text">Boutique mode, accessoires et service de restauration photo à Cotonou.</p>
-      <p>📞 +229 01 66 01 87 13</p>
+    <div class="footer-grid">
+        <div>
+            <h3>Fashion Larissa</h3>
+            <p id="footer-text">Boutique mode, accessoires et service de restauration photo à Cotonou.</p>
+            <p>📞 +229 01 66 01 87 13</p>
+        </div>
+        <div>
+            <h3>Services</h3>
+            <p>• Mode & accessoires</p>
+            <p>• Restauration photo</p>
+            <p>• Contact WhatsApp</p>
+        </div>
     </div>
-    <div>
-      <h3>Services</h3>
-      <p>• Mode & accessoires</p>
-      <p>• Restauration photo</p>
-      <p>• Contact WhatsApp</p>
-    </div>
-  </div>
 </footer>
 
-<div class="viewer" id="viewer">
-  <span class="close" onclick="closeImg()">×</span>
-  <img id="viewerImg" src="">
+<!-- Visionneuse d'images optimisée -->
+<div class="viewer" id="viewer" onclick="closeImg()">
+    <span class="close" onclick="closeImg()">&times;</span>
+    <img id="viewerImg" src="" alt="Aperçu" onclick="event.stopPropagation()">
 </div>
 
+<!-- Bouton WhatsApp flottant -->
 <a class="float-btn" href="https://wa.me/2290166018713" target="_blank">💬</a>
 
 <script>
+// Gestion de l'affichage de l'image (Lightbox) avec animations fluides
 function openImg(src){
-  document.getElementById("viewerImg").src=src;
-  document.getElementById("viewer").style.display="flex";
+    const viewer = document.getElementById("viewer");
+    const img = document.getElementById("viewerImg");
+    img.src = src;
+    viewer.classList.add("show");
 }
+
 function closeImg(){
-  document.getElementById("viewer").style.display="none";
+    document.getElementById("viewer").classList.remove("show");
 }
-const txt={
-fr:{
-"subtitle":"L’élégance à votre portée",
-"nav-bags":"Sacs","nav-sandals":"Sandales","nav-clothes":"Vêtements","nav-care":"Soins","nav-fabric":"Pagne","nav-photo":"Restauration photo",
-"main-cta":"💬 Commander sur WhatsApp",
-"larissa-bio":"Larissa propose une sélection d’articles de mode, sacs, sandales, pagnes, vêtements et soins. Une boutique locale avec une présence élégante, moderne et proche de ses clientes.",
-"photo-title":"Nouveau service : restauration de photos",
-"photo-text":"Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ? Fashion Larissa vous propose un service de récupération visuelle pour redonner vie à vos souvenirs.",
-"photo-p1":"✨ Amélioration et retouche de vieilles photos",
-"photo-p2":"🖼️ Reproduction en portrait propre",
-"photo-p3":"🎁 Idéal pour offrir un souvenir à vos proches",
-"photo-p4":"📞 Contact WhatsApp / Téléphone : +229 01 66 01 87 13",
-"title-bags":"Nos sacs","title-sandals":"Sandales","title-clothes":"Vêtements","title-care":"Soins","title-fabric":"Pagne & Tissus",
-"footer-text":"Boutique mode, accessoires et service de restauration photo à Cotonou."
-},
-en:{
-"subtitle":"Elegance within your reach",
-"nav-bags":"Bags","nav-sandals":"Sandals","nav-clothes":"Clothing","nav-care":"Care","nav-fabric":"Fabric","nav-photo":"Photo restoration",
-"main-cta":"💬 Order on WhatsApp",
-"larissa-bio":"Larissa offers a selection of fashion items, bags, sandals, fabrics, clothing and beauty care. A local boutique with an elegant, modern and friendly presence.",
-"photo-title":"New service: photo restoration",
-"photo-text":"Do you have an old damaged, torn, faded or black-and-white photo? Fashion Larissa offers a visual restoration service to bring your memories back to life.",
-"photo-p1":"✨ Enhancement and retouching of old photos",
-"photo-p2":"🖼️ Clean portrait reproduction",
-"photo-p3":"🎁 Ideal as a meaningful gift for loved ones",
-"photo-p4":"📞 WhatsApp / Phone contact: +229 01 66 01 87 13",
-"title-bags":"Our bags","title-sandals":"Sandals","title-clothes":"Clothing","title-care":"Care products","title-fabric":"Wax fabric",
-"footer-text":"Fashion, accessories and photo restoration service in Cotonou."
+
+// Gestion de l'accordéon FAQ avec animation de glissement fluide (slide)
+function toggleFaq(el){
+    const item = el.parentElement;
+    const answer = el.nextElementSibling;
+    
+    if(item.classList.contains("active")) {
+        item.classList.remove("active");
+        answer.style.maxHeight = "0";
+    } else {
+        // Optionnel : ferme les autres FAQ ouvertes
+        document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.faq-a').style.maxHeight = '0';
+        });
+        
+        item.classList.add("active");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+    }
 }
+
+// Dictionnaire pour la traduction multilingue
+const txt = {
+    fr: {
+        "subtitle": "L’élégance à votre portée",
+        "nav-bags": "Sacs", "nav-sandals": "Sandales", "nav-clothes": "Vêtements", "nav-care": "Soins", "nav-fabric": "Pagne", "nav-photo": "Restauration photo",
+        "main-cta": "💬 Commander sur WhatsApp",
+        "larissa-bio": "Larissa propose une sélection d’articles de mode, sacs, sandales, pagnes, vêtements et soins. Une boutique locale avec une présence élégante, moderne et proche de ses clientes.",
+        "photo-title": "Nouveau service : restauration de photos",
+        "photo-text": "Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ? Fashion Larissa vous propose un service de récupération visuelle pour redonner vie à vos souvenirs.",
+        "photo-p1": "✨ Amélioration et retouche de vieilles photos",
+        "photo-p2": "🖼️ Reproduction en portrait propre",
+        "photo-p3": "🎁 Idéal pour offrir un souvenir à vos proches",
+        "photo-p4": "📞 Contact WhatsApp / Téléphone : +229 01 66 01 87 13",
+        "title-bags": "Nos sacs", "title-sandals": "Sandales", "title-clothes": "Vêtements", "title-care": "Soins", "title-fabric": "Pagne & Tissus",
+        "faq-title": "Infos utiles", "faq-q1": "Comment commander ?", "faq-a1": "Contactez Larissa directement par WhatsApp ou téléphone pour vérifier la disponibilité de l’article.",
+        "faq-q2": "Les prix sont-ils affichés ?", "faq-a2": "Les prix sont communiqués directement par WhatsApp selon l’article, la disponibilité et le format souhaité.",
+        "footer-text": "Boutique mode, accessoires et service de restauration photo à Cotonou."
+    },
+    en: {
+        "subtitle": "Elegance within your reach",
+        "nav-bags": "Bags", "nav-sandals": "Sandales", "nav-clothes": "Clothing", "nav-care": "Care", "nav-fabric": "Fabric", "nav-photo": "Photo restoration",
+        "main-cta": "💬 Order on WhatsApp",
+        "larissa-bio": "Larissa offers a selection of fashion items, bags, sandals, fabrics, clothing and beauty care. A local boutique with an elegant, modern and friendly presence.",
+        "photo-title": "New service: photo restoration",
+        "photo-text": "Do you have an old damaged, torn, faded or black-and-white photo? Fashion Larissa offers a visual restoration service to bring your memories back to life.",
+        "photo-p1": "✨ Enhancement and retouching of old photos",
+        "photo-p2": "🖼️ Clean portrait reproduction",
+        "photo-p3": "🎁 Ideal as a meaningful gift for loved ones",
+        "photo-p4": "📞 WhatsApp / Phone contact: +229 01 66 01 87 13",
+        "title-bags": "Our bags", "title-sandals": "Sandals", "title-clothes": "Clothing", "title-care": "Care products", "title-fabric": "Wax fabric",
+        "faq-title": "Useful information", "faq-q1": "How to order?", "faq-a1": "Contact Larissa directly by WhatsApp or phone to check item availability.",
+        "faq-q2": "Are prices displayed?", "faq-a2": "Prices are shared directly on WhatsApp depending on the item, availability and requested format.",
+        "footer-text": "Fashion, accessories and photo restoration service in Cotonou."
+    }
 };
-function setLanguage(lang){
-  for(const id in txt[lang]){
-    const el=document.getElementById(id);
-    if(el) el.textContent=txt[lang][id];
-  }
+
+function setLanguage(lang) {
+    for (const id in txt[lang]) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = txt[lang][id];
+    }
 }
 </script>
 
