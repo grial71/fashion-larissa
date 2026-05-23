@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fashion Larissa | Boutique & Restauration Photo</title>
 
-    <!-- Polices Google Fonts Premium -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -656,6 +655,41 @@
             box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
         }
 
+        /* BOUTON LECTEUR DE MUSIQUE FLOTTANT MODERNE */
+        .music-btn {
+            position: fixed;
+            left: 30px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 1.6rem;
+            z-index: 3000;
+            background: linear-gradient(135deg, var(--pink), var(--darkpink));
+            box-shadow: 0 10px 25px rgba(211, 0, 108, 0.3);
+            transition: var(--transition);
+        }
+
+        .music-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(211, 0, 108, 0.5);
+        }
+
+        /* Animation de rotation quand la musique est active */
+        .music-btn.playing {
+            animation: musicRotate 4s linear infinite;
+        }
+
+        @keyframes musicRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         /* Adaptabilité Mobile (Responsive) */
         @media(max-width: 900px) {
             .promo-box { grid-template-columns: 1fr; gap: 40px; }
@@ -663,6 +697,8 @@
             .card-img { height: 250px; }
             .products { padding: 20px 4% 40px; }
             .larissa-card { padding: 35px 20px; }
+            .music-btn { left: 20px; bottom: 20px; width: 50px; height: 50px; font-size: 1.3rem; }
+            .float-btn { right: 20px; bottom: 20px; width: 55px; height: 55px; font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -723,7 +759,6 @@
     </div>
 </section>
 
-<!-- SECTION SACS -->
 <div id="sacs" class="section-title"><h2 id="title-bags">Nos sacs</h2></div>
 <div class="products">
     <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_1.jpeg" alt="Sac 1"><div class="overlay">Voir</div></div><p>Sac 1</p></div>
@@ -738,7 +773,6 @@
     <div class="card" onclick="openImg('Images_Boutique/Sacs/Sac_10.jpeg')"><div class="card-img"><img src="Images_Boutique/Sacs/Sac_10.jpeg" alt="Sac 10"><div class="overlay">Voir</div></div><p>Sac 10</p></div>
 </div>
 
-<!-- SECTION SANDALES -->
 <div id="sandales" class="section-title"><h2 id="title-sandals">Sandales</h2></div>
 <div class="products">
     <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_1.jpeg" alt="Sandale 1"><div class="overlay">Voir</div></div><p>Sandale 1</p></div>
@@ -755,7 +789,6 @@
     <div class="card" onclick="openImg('Images_Boutique/Sandales/Sandale_12.jpeg')"><div class="card-img"><img src="Images_Boutique/Sandales/Sandale_12.jpeg" alt="Sandale 12"><div class="overlay">Voir</div></div><p>Sandale 12</p></div>
 </div>
 
-<!-- SECTION VÊTEMENTS -->
 <div id="vetements" class="section-title"><h2 id="title-clothes">Vêtements</h2></div>
 <div class="products">
     <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_1.jpeg" alt="Vêtement 1"><div class="overlay">Voir</div></div><p>Vêtement 1</p></div>
@@ -763,7 +796,6 @@
     <div class="card" onclick="openImg('Images_Boutique/Vetement/Vetement_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Vetement/Vetement_3.jpeg" alt="Vêtement 3"><div class="overlay">Voir</div></div><p>Vêtement 3</p></div>
 </div>
 
-<!-- SECTION SOINS -->
 <div id="soins" class="section-title"><h2 id="title-care">Soins</h2></div>
 <div class="products">
     <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_1.jpeg" alt="Soin 1"><div class="overlay">Voir</div></div><p>Soin 1</p></div>
@@ -771,13 +803,11 @@
     <div class="card" onclick="openImg('Images_Boutique/Soins/Soins_3.jpeg')"><div class="card-img"><img src="Images_Boutique/Soins/Soins_3.jpeg" alt="Soin 3"><div class="overlay">Voir</div></div><p>Soin 3</p></div>
 </div>
 
-<!-- SECTION PAGNE -->
 <div id="pagne" class="section-title"><h2 id="title-fabric">Pagne & Tissus</h2></div>
 <div class="products">
     <div class="card" onclick="openImg('Images_Boutique/Pagne/Pagne_1.jpeg')"><div class="card-img"><img src="Images_Boutique/Pagne/Pagne_1.jpeg" alt="Pagne 1"><div class="overlay">Voir</div></div><p>Pagne 1</p></div>
 </div>
 
-<!-- SECTION FAQ INTERACTIVE -->
 <section class="faq">
     <h2 id="faq-title">Infos utiles</h2>
     <div class="faq-item">
@@ -806,16 +836,37 @@
     </div>
 </footer>
 
-<!-- Visionneuse d'images optimisée -->
 <div class="viewer" id="viewer" onclick="closeImg()">
     <span class="close" onclick="closeImg()">&times;</span>
     <img id="viewerImg" src="" alt="Aperçu" onclick="event.stopPropagation()">
 </div>
 
-<!-- Bouton WhatsApp flottant -->
+<audio id="bgMusic" src="ambiance.mp3" loop></audio>
+
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">🔇</div>
+
 <a class="float-btn" href="https://wa.me/2290166018713" target="_blank">💬</a>
 
 <script>
+// Gestion de la Musique (Play/Pause)
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+function toggleMusic() {
+    if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+            musicBtn.textContent = "🎵";
+            musicBtn.classList.add("playing");
+        }).catch(err => {
+            console.log("Lecture bloquée par le navigateur, attente d'un clic utilisateur.");
+        });
+    } else {
+        bgMusic.pause();
+        musicBtn.textContent = "🔇";
+        musicBtn.classList.remove("playing");
+    }
+}
+
 // Gestion de l'affichage de l'image (Lightbox) avec animations fluides
 function openImg(src){
     const viewer = document.getElementById("viewer");
@@ -837,7 +888,6 @@ function toggleFaq(el){
         item.classList.remove("active");
         answer.style.maxHeight = "0";
     } else {
-        // Optionnel : ferme les autres FAQ ouvertes
         document.querySelectorAll('.faq-item').forEach(i => {
             i.classList.remove('active');
             i.querySelector('.faq-a').style.maxHeight = '0';
@@ -868,7 +918,7 @@ const txt = {
     },
     en: {
         "subtitle": "Elegance within your reach",
-        "nav-bags": "Bags", "nav-sandals": "Sandales", "nav-clothes": "Clothing", "nav-care": "Care", "nav-fabric": "Fabric", "nav-photo": "Photo restoration",
+        "nav-bags": "Bags", "nav-sandals": "Sandals", "nav-clothes": "Clothing", "nav-care": "Care", "nav-fabric": "Fabric", "nav-photo": "Photo restoration",
         "main-cta": "💬 Order on WhatsApp",
         "larissa-bio": "Larissa offers a selection of fashion items, bags, sandals, fabrics, clothing and beauty care. A local boutique with an elegant, modern and friendly presence.",
         "photo-title": "New service: photo restoration",
