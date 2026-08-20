@@ -125,7 +125,7 @@ nav{
     z-index:999;
     background:rgba(0,0,0,.84);
     backdrop-filter:blur(13px);
-    padding:14px;
+    padding:14px 205px 14px 14px;
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
@@ -398,6 +398,97 @@ nav a:hover{
     font-weight:700;
     list-style:none;
 }
+.partners-section{
+    padding:70px 20px 10px;
+    scroll-margin-top:90px;
+}
+.partners-shell{
+    max-width:1200px;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+    padding:48px;
+    border-radius:34px;
+    background:
+    radial-gradient(circle at 90% 10%,rgba(255,215,0,.18),transparent 32%),
+    linear-gradient(135deg,rgba(255,0,140,.16),rgba(8,8,8,.92) 48%,rgba(255,215,0,.12));
+    border:1px solid rgba(255,215,0,.42);
+    box-shadow:0 24px 70px rgba(0,0,0,.48),0 0 34px rgba(255,0,140,.16);
+}
+.partners-shell::after{
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    right:-90px;
+    bottom:-110px;
+    border-radius:50%;
+    background:rgba(255,0,140,.18);
+    filter:blur(18px);
+}
+.partners-eyebrow{
+    color:#ff73c5;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+.partners-shell h2{
+    margin:10px 0 14px;
+    font-family:'Playfair Display',serif;
+    color:#ffd700;
+    font-size:44px;
+}
+.partners-intro,.partner-desc,.partner-bridge{
+    max-width:980px;
+    color:#eee;
+    line-height:1.8;
+}
+.partner-card{
+    position:relative;
+    z-index:1;
+    margin-top:30px;
+    padding:30px;
+    border-radius:26px;
+    background:rgba(0,0,0,.48);
+    border:1px solid rgba(255,215,0,.28);
+    backdrop-filter:blur(12px);
+}
+.partner-heading{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:16px;
+}
+.partner-icon{
+    width:66px;
+    height:66px;
+    display:grid;
+    place-items:center;
+    flex:0 0 auto;
+    border-radius:20px;
+    font-size:34px;
+    background:linear-gradient(145deg,#164d2c,#ffd700);
+    box-shadow:0 0 24px rgba(255,215,0,.25);
+}
+.partner-heading h3{color:white;font-size:27px}
+.partner-responsible{color:#ffd700;font-weight:800;margin-top:4px}
+.partner-areas{
+    margin:22px 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+.partner-areas span{
+    padding:9px 13px;
+    border-radius:999px;
+    color:#fff;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,215,0,.2);
+    font-size:14px;
+    font-weight:700;
+}
+.partner-bridge{margin-top:18px;color:#fff7d1}
+.partner-button{position:relative;z-index:2}
 .contact-box{
     margin-top:25px;
     padding:18px;
@@ -592,6 +683,12 @@ footer{
         height:58px;
     }
     .pub-card{padding:25px}
+    .partners-section{padding:50px 14px 5px}
+    .partners-shell{padding:28px 20px}
+    .partners-shell h2{font-size:32px}
+    .partner-card{padding:22px 18px}
+    .partner-heading{align-items:flex-start}
+    .partner-heading h3{font-size:22px}
 }
 </style>
 </head>
@@ -623,6 +720,7 @@ footer{
     <a id="menu-pagne" href="#pagne">Pagne</a>
     <a id="menu-soins" href="#soins">Soins</a>
     <a id="menu-restauration" href="#restauration">Restauration Photo</a>
+    <a id="menu-partenaires" href="#partenaires">Partenaires</a>
 </nav>
 
 <section class="hero reveal" id="accueil">
@@ -764,6 +862,44 @@ Fashion Larissa propose désormais un service de restauration et amélioration p
 </div>
 </section>
 
+<section class="partners-section reveal" id="partenaires">
+    <div class="partners-shell">
+        <p class="partners-eyebrow" id="partners-eyebrow">Partenaires & Collaborations</p>
+        <h2 id="partners-title">Créer des passerelles pour entreprendre au Bénin</h2>
+        <p class="partners-intro" id="partners-intro">
+            Fashion Larissa développe des collaborations qui relient créativité, commerce local,
+            communication numérique et initiatives porteuses d’avenir.
+        </p>
+
+        <article class="partner-card">
+            <div class="partner-heading">
+                <div class="partner-icon" aria-hidden="true">🌱</div>
+                <div>
+                    <h3 id="lsj-title">LSJ – Les Serveurs de Jérusalem (Bénin)</h3>
+                    <p class="partner-responsible" id="lsj-responsible">Responsable : Jude Gbetoho</p>
+                </div>
+            </div>
+            <p class="partner-desc" id="lsj-desc">
+                À Dogoudo/Hêvié, LSJ construit progressivement un projet autour de l’agriculture,
+                du maraîchage, de l’élevage, de la transformation du manioc en gari, de l’économie
+                circulaire et de la formation des jeunes.
+            </p>
+            <div class="partner-areas" aria-label="Domaines d’activité de LSJ">
+                <span>🌿 Maraîchage</span><span>🐓 Volailles</span><span>🐇 Lapins</span>
+                <span>🐌 Escargots africains</span><span>🌾 Gari</span><span>♻️ Économie circulaire</span>
+                <span>🎓 Formation</span><span>💧 Aquaponie & pisciculture</span>
+            </div>
+            <p class="partner-bridge" id="lsj-bridge">
+                Ce partenariat réciproque unit l’entrepreneuriat local, l’agriculture, la créativité
+                et le numérique afin de mieux faire connaître et développer des initiatives béninoises.
+            </p>
+            <a class="gold-btn partner-button" id="lsj-button"
+               href="https://grial71.github.io/serveurs-jerusalem-benin-app/"
+               target="_blank" rel="noopener noreferrer">🌱 Découvrir LSJ – Les Serveurs de Jérusalem</a>
+        </article>
+    </div>
+</section>
+
 <footer id="footer-text">
 © Fashion Larissa – Boutique & Services Premium
 </footer>
@@ -873,6 +1009,7 @@ fr:{
 "menu-pagne":"Pagne",
 "menu-soins":"Soins",
 "menu-restauration":"Restauration Photo",
+"menu-partenaires":"Partenaires",
 "hero-title":"Élégance • Mode • Beauté • Style",
 "hero-text":"Découvrez l’univers Fashion Larissa : sacs, sandales, vêtements, soins, pagnes et restauration professionnelle de vieilles photos.",
 "promo-title":"Faites connaître votre activité avec Fashion Larissa",
@@ -893,6 +1030,14 @@ fr:{
 "title-soins":"Soins",
 "restore-title":"Restauration de vieilles photos",
 "restore-text":"Vous avez une vieille photo abîmée, déchirée, décolorée ou en noir et blanc ? Fashion Larissa propose désormais un service de restauration et amélioration photo.",
+"partners-eyebrow":"Partenaires & Collaborations",
+"partners-title":"Créer des passerelles pour entreprendre au Bénin",
+"partners-intro":"Fashion Larissa développe des collaborations qui relient créativité, commerce local, communication numérique et initiatives porteuses d’avenir.",
+"lsj-title":"LSJ – Les Serveurs de Jérusalem (Bénin)",
+"lsj-responsible":"Responsable : Jude Gbetoho",
+"lsj-desc":"À Dogoudo/Hêvié, LSJ construit progressivement un projet autour de l’agriculture, du maraîchage, de l’élevage, de la transformation du manioc en gari, de l’économie circulaire et de la formation des jeunes.",
+"lsj-bridge":"Ce partenariat réciproque unit l’entrepreneuriat local, l’agriculture, la créativité et le numérique afin de mieux faire connaître et développer des initiatives béninoises.",
+"lsj-button":"🌱 Découvrir LSJ – Les Serveurs de Jérusalem",
 "footer-text":"© Fashion Larissa – Boutique & Services Premium"
 },
 en:{
@@ -904,6 +1049,7 @@ en:{
 "menu-pagne":"Fabric",
 "menu-soins":"Beauty",
 "menu-restauration":"Photo Restoration",
+"menu-partenaires":"Partners",
 "hero-title":"Elegance • Fashion • Beauty • Style",
 "hero-text":"Discover the Fashion Larissa universe: bags, sandals, clothes, beauty care, fabrics and professional restoration of old photos.",
 "promo-title":"Make your activity visible with Fashion Larissa",
@@ -924,6 +1070,14 @@ en:{
 "title-soins":"Beauty",
 "restore-title":"Old Photo Restoration",
 "restore-text":"Do you have an old damaged, torn or faded picture? Fashion Larissa now offers professional restoration services.",
+"partners-eyebrow":"Partners & Collaborations",
+"partners-title":"Building bridges for entrepreneurship in Benin",
+"partners-intro":"Fashion Larissa develops collaborations connecting creativity, local commerce, digital communication and forward-looking initiatives.",
+"lsj-title":"LSJ – The Servants of Jerusalem (Benin)",
+"lsj-responsible":"Project lead: Jude Gbetoho",
+"lsj-desc":"In Dogoudo/Hêvié, LSJ is progressively building a project around agriculture, market gardening, livestock farming, cassava processing into gari, the circular economy and youth training.",
+"lsj-bridge":"This reciprocal partnership brings together local entrepreneurship, agriculture, creativity and digital communication to promote and develop initiatives from Benin.",
+"lsj-button":"🌱 Discover LSJ – The Servants of Jerusalem",
 "footer-text":"© Fashion Larissa – Premium Boutique & Services"
 },
 es:{
@@ -935,6 +1089,7 @@ es:{
 "menu-pagne":"Tela",
 "menu-soins":"Belleza",
 "menu-restauration":"Restauración",
+"menu-partenaires":"Socios",
 "hero-title":"Elegancia • Moda • Belleza • Estilo",
 "hero-text":"Descubra el universo Fashion Larissa: bolsos, sandalias, ropa, belleza y restauración profesional de fotografías antiguas.",
 "promo-title":"Haz conocer tu actividad con Fashion Larissa",
@@ -955,6 +1110,14 @@ es:{
 "title-soins":"Belleza",
 "restore-title":"Restauración de fotos antiguas",
 "restore-text":"¿Tiene una foto vieja dañada o descolorida? Fashion Larissa ofrece ahora restauración profesional.",
+"partners-eyebrow":"Socios y colaboraciones",
+"partners-title":"Crear puentes para emprender en Benín",
+"partners-intro":"Fashion Larissa desarrolla colaboraciones que conectan creatividad, comercio local, comunicación digital e iniciativas de futuro.",
+"lsj-title":"LSJ – Los Servidores de Jerusalén (Benín)",
+"lsj-responsible":"Responsable: Jude Gbetoho",
+"lsj-desc":"En Dogoudo/Hêvié, LSJ desarrolla progresivamente un proyecto de agricultura, horticultura, ganadería, transformación de mandioca en gari, economía circular y formación de jóvenes.",
+"lsj-bridge":"Esta colaboración recíproca une el emprendimiento local, la agricultura, la creatividad y la comunicación digital para promover y desarrollar iniciativas de Benín.",
+"lsj-button":"🌱 Descubrir LSJ – Los Servidores de Jerusalén",
 "footer-text":"© Fashion Larissa – Boutique y Servicios Premium"
 }
 };
